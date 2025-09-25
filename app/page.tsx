@@ -1,104 +1,205 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { 
-  FileText, 
-  GraduationCap, 
-  Brain, 
-  Calculator, 
+import { useState } from "react";
+import Link from "next/link";
+import {
+  FileText,
+  GraduationCap,
+  Brain,
+  Calculator,
   Plane,
   Search,
   Menu,
   X,
-  ChevronRight
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+  ChevronRight,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const toolCategories = [
   {
-    id: 'productivity',
-    title: 'Productivity & Documents',
-    description: 'Essential document and productivity tools',
+    id: "productivity",
+    title: "Productivity & Documents",
+    description: "Essential document and productivity tools",
     icon: FileText,
-    color: 'bg-blue-500',
+    color: "bg-blue-500",
     tools: [
-      { name: 'Image to PDF', path: '/tools/image-to-pdf', description: 'Convert images to PDF format' },
-      { name: 'PDF to Word', path: '/tools/pdf-to-word', description: 'Convert PDF files to Word documents' },
-      { name: 'Merge PDFs', path: '/tools/merge-pdfs', description: 'Combine multiple PDF files' },
-      { name: 'Compress Image', path: '/tools/compress-image', description: 'Reduce image file sizes' },
-      { name: 'Resume Builder', path: '/tools/resume-builder', description: 'Create professional resumes' },
-      { name: 'Cover Letter Generator', path: '/tools/cover-letter', description: 'Generate compelling cover letters' }
-    ]
+      {
+        name: "Image to PDF",
+        path: "/tools/image-to-pdf",
+        description: "Convert images to PDF format",
+      },
+      {
+        name: "PDF to Word",
+        path: "/tools/pdf-to-word",
+        description: "Convert PDF files to Word documents",
+      },
+      {
+        name: "Merge PDFs",
+        path: "/tools/merge-pdfs",
+        description: "Combine multiple PDF files",
+      },
+      {
+        name: "Compress Image",
+        path: "/tools/compress-image",
+        description: "Reduce image file sizes",
+      },
+      {
+        name: "Resume Builder",
+        path: "/tools/resume-builder",
+        description: "Create professional resumes",
+      },
+      {
+        name: "Cover Letter Generator",
+        path: "/tools/cover-letter",
+        description: "Generate compelling cover letters",
+      },
+    ],
   },
   {
-    id: 'education',
-    title: 'Education & Career',
-    description: 'Learning and career development tools',
+    id: "education",
+    title: "Education & Career",
+    description: "Learning and career development tools",
     icon: GraduationCap,
-    color: 'bg-emerald-500',
+    color: "bg-emerald-500",
     tools: [
-      { name: 'Driving License Practice', path: '/tools/driving-license', description: 'Practice tests for EU countries' },
-      { name: 'IELTS Vocabulary', path: '/tools/ielts-vocab', description: 'Vocabulary builder and quizzes' },
-      { name: 'Visa Checker', path: '/tools/visa-checker', description: 'Check visa requirements' },
-      { name: 'CV Templates', path: '/tools/cv-templates', description: 'Country-specific CV templates' }
-    ]
+      {
+        name: "Driving License Practice",
+        path: "/tools/driving-license",
+        description: "Practice tests for EU countries",
+      },
+      {
+        name: "IELTS Vocabulary",
+        path: "/tools/ielts-vocab",
+        description: "Vocabulary builder and quizzes",
+      },
+      {
+        name: "Visa Checker",
+        path: "/tools/visa-checker",
+        description: "Check visa requirements",
+      },
+      {
+        name: "CV Templates",
+        path: "/tools/cv-templates",
+        description: "Country-specific CV templates",
+      },
+    ],
   },
   {
-    id: 'ai-tools',
-    title: 'AI-Powered Tools',
-    description: 'Intelligent content and writing assistants',
+    id: "ai-tools",
+    title: "AI-Powered Tools",
+    description: "Intelligent content and writing assistants",
     icon: Brain,
-    color: 'bg-purple-500',
+    color: "bg-purple-500",
     tools: [
-      { name: 'AI Summarizer', path: '/tools/ai-summarizer', description: 'Summarize long texts instantly' },
-      { name: 'AI Report Generator', path: '/tools/ai-report', description: 'Generate professional reports' },
-      { name: 'Blog Writer', path: '/tools/blog-writer', description: 'AI-powered blog content creation' },
-      { name: 'Language Translator', path: '/tools/translator', description: 'Translate text between languages' },
-      { name: 'Email Responder', path: '/tools/email-responder', description: 'Generate professional email responses' }
-    ]
+      {
+        name: "AI Summarizer",
+        path: "/tools/ai-summarizer",
+        description: "Summarize long texts instantly",
+      },
+      {
+        name: "AI Report Generator",
+        path: "/tools/ai-report",
+        description: "Generate professional reports",
+      },
+      {
+        name: "Blog Writer",
+        path: "/tools/blog-writer",
+        description: "AI-powered blog content creation",
+      },
+      {
+        name: "Language Translator",
+        path: "/tools/translator",
+        description: "Translate text between languages",
+      },
+      {
+        name: "Email Responder",
+        path: "/tools/email-responder",
+        description: "Generate professional email responses",
+      },
+    ],
   },
   {
-    id: 'calculators',
-    title: 'Daily Utilities',
-    description: 'Everyday calculators and converters',
+    id: "calculators",
+    title: "Daily Utilities",
+    description: "Everyday calculators and converters",
     icon: Calculator,
-    color: 'bg-orange-500',
+    color: "bg-orange-500",
     tools: [
-      { name: 'BMI Calculator', path: '/tools/bmi-calculator', description: 'Calculate body mass index' },
-      { name: 'Calorie Counter', path: '/tools/calorie-counter', description: 'Track daily calorie intake' },
-      { name: 'Currency Converter', path: '/tools/currency-converter', description: 'Live currency conversion' },
-      { name: 'Age Calculator', path: '/tools/age-calculator', description: 'Calculate precise age' },
-      { name: 'Loan EMI Calculator', path: '/tools/emi-calculator', description: 'Calculate loan EMI amounts' }
-    ]
+      {
+        name: "BMI Calculator",
+        path: "/tools/bmi-calculator",
+        description: "Calculate body mass index",
+      },
+      {
+        name: "Calorie Counter",
+        path: "/tools/calorie-counter",
+        description: "Track daily calorie intake",
+      },
+      {
+        name: "Currency Converter",
+        path: "/tools/currency-converter",
+        description: "Live currency conversion",
+      },
+      {
+        name: "Age Calculator",
+        path: "/tools/age-calculator",
+        description: "Calculate precise age",
+      },
+      {
+        name: "Loan EMI Calculator",
+        path: "/tools/emi-calculator",
+        description: "Calculate loan EMI amounts",
+      },
+    ],
   },
   {
-    id: 'travel',
-    title: 'Travel & Visa',
-    description: 'Travel planning and visa assistance',
+    id: "travel",
+    title: "Travel & Visa",
+    description: "Travel planning and visa assistance",
     icon: Plane,
-    color: 'bg-teal-500',
+    color: "bg-teal-500",
     tools: [
-      { name: 'Schengen Budget Planner', path: '/tools/schengen-budget', description: 'Plan your Schengen trip budget' },
-      { name: 'Visa Processing Steps', path: '/tools/visa-processing', description: 'Step-by-step visa guides' },
-      { name: 'Language Phrase Tool', path: '/tools/language-phrases', description: 'Essential travel phrases' }
-    ]
-  }
+      {
+        name: "Schengen Budget Planner",
+        path: "/tools/schengen-budget",
+        description: "Plan your Schengen trip budget",
+      },
+      {
+        name: "Visa Processing Steps",
+        path: "/tools/visa-processing",
+        description: "Step-by-step visa guides",
+      },
+      {
+        name: "Language Phrase Tool",
+        path: "/tools/language-phrases",
+        description: "Essential travel phrases",
+      },
+    ],
+  },
 ];
 
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const filteredCategories = toolCategories.map(category => ({
-    ...category,
-    tools: category.tools.filter(tool => 
-      tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      tool.description.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  })).filter(category => category.tools.length > 0);
+  const filteredCategories = toolCategories
+    .map((category) => ({
+      ...category,
+      tools: category.tools.filter(
+        (tool) =>
+          tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          tool.description.toLowerCase().includes(searchTerm.toLowerCase())
+      ),
+    }))
+    .filter((category) => category.tools.length > 0);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
@@ -111,10 +212,10 @@ export default function Home() {
                 <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                   <FileText className="w-5 h-5 text-white" />
                 </div>
-                <h1 className="text-xl font-bold text-gray-900">ToolHub</h1>
+                <h1 className="text-xl font-bold text-gray-900">Dev Shelf</h1>
               </div>
             </div>
-            
+
             <div className="hidden md:flex items-center space-x-4">
               <div className="relative">
                 <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -134,7 +235,11 @@ export default function Home() {
               className="md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </Button>
           </div>
 
@@ -162,15 +267,19 @@ export default function Home() {
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
             All-in-One
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-              {' '}Tool Suite
+              {" "}
+              Tool Suite
             </span>
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Everything you need for productivity, learning, and daily tasks. 
+            Everything you need for productivity, learning, and daily tasks.
             Professional-grade tools that are completely free to use.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            >
               Explore Tools
             </Button>
             <Button variant="outline" size="lg">
@@ -184,7 +293,9 @@ export default function Home() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Choose Your Category</h3>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+              Choose Your Category
+            </h3>
             <p className="text-lg text-gray-600">
               Discover tools organized by purpose to help you work smarter
             </p>
@@ -194,14 +305,21 @@ export default function Home() {
             {filteredCategories.map((category) => {
               const IconComponent = category.icon;
               return (
-                <Card key={category.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-1">
+                <Card
+                  key={category.id}
+                  className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-1"
+                >
                   <CardHeader className="pb-4">
                     <div className="flex items-center space-x-3 mb-3">
-                      <div className={`w-12 h-12 ${category.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                      <div
+                        className={`w-12 h-12 ${category.color} rounded-xl flex items-center justify-center shadow-lg`}
+                      >
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <CardTitle className="text-lg">{category.title}</CardTitle>
+                        <CardTitle className="text-lg">
+                          {category.title}
+                        </CardTitle>
                         <CardDescription className="text-sm">
                           {category.description}
                         </CardDescription>
@@ -214,8 +332,12 @@ export default function Home() {
                         <Link key={index} href={tool.path}>
                           <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group/tool">
                             <div>
-                              <div className="font-medium text-gray-900 text-sm">{tool.name}</div>
-                              <div className="text-xs text-gray-500">{tool.description}</div>
+                              <div className="font-medium text-gray-900 text-sm">
+                                {tool.name}
+                              </div>
+                              <div className="text-xs text-gray-500">
+                                {tool.description}
+                              </div>
                             </div>
                             <ChevronRight className="w-4 h-4 text-gray-400 group-hover/tool:text-gray-600 transition-colors" />
                           </div>
@@ -223,7 +345,11 @@ export default function Home() {
                       ))}
                       {category.tools.length > 4 && (
                         <div className="text-center pt-2">
-                          <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-blue-600 hover:text-blue-700"
+                          >
                             View All {category.tools.length} Tools
                           </Button>
                         </div>
@@ -273,8 +399,9 @@ export default function Home() {
                 <h3 className="text-xl font-bold">ToolHub</h3>
               </div>
               <p className="text-gray-400 mb-4">
-                Your one-stop destination for professional-grade online tools. 
-                Everything you need to boost productivity and streamline your workflow.
+                Your one-stop destination for professional-grade online tools.
+                Everything you need to boost productivity and streamline your
+                workflow.
               </p>
             </div>
             <div>
@@ -298,7 +425,10 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 mt-8 text-center text-gray-400">
-            <p>&copy; 2024 ToolHub. All rights reserved. Made with ❤️ for productivity.</p>
+            <p>
+              &copy; 2024 ToolHub. All rights reserved. Made with ❤️ for
+              productivity.
+            </p>
           </div>
         </div>
       </footer>
