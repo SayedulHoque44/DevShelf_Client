@@ -29,7 +29,7 @@ const toolCategories = [
     title: "Productivity & Documents",
     description: "Essential document and productivity tools",
     icon: FileText,
-    color: "bg-blue-500",
+    color: "bg-ocean-500",
     tools: [
       {
         name: "Image to PDF",
@@ -68,7 +68,7 @@ const toolCategories = [
     title: "Education & Career",
     description: "Learning and career development tools",
     icon: GraduationCap,
-    color: "bg-emerald-500",
+    color: "bg-warm-beige-500",
     tools: [
       {
         name: "Driving License Practice",
@@ -97,7 +97,7 @@ const toolCategories = [
     title: "AI-Powered Tools",
     description: "Intelligent content and writing assistants",
     icon: Brain,
-    color: "bg-purple-500",
+    color: "bg-rich-beige-500",
     tools: [
       {
         name: "AI Summarizer",
@@ -131,7 +131,7 @@ const toolCategories = [
     title: "Daily Utilities",
     description: "Everyday calculators and converters",
     icon: Calculator,
-    color: "bg-orange-500",
+    color: "bg-ocean-400",
     tools: [
       {
         name: "BMI Calculator",
@@ -165,7 +165,7 @@ const toolCategories = [
     title: "Travel & Visa",
     description: "Travel planning and visa assistance",
     icon: Plane,
-    color: "bg-teal-500",
+    color: "bg-warm-beige-400",
     tools: [
       {
         name: "Schengen Budget Planner",
@@ -202,27 +202,27 @@ export default function Home() {
     .filter((category) => category.tools.length > 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
+      <header className="bg-cream-100/80 backdrop-blur-md border-b border-warm-beige-300 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <FileText className="w-5 h-5 text-white" />
+                <div className="w-8 h-8 bg-gradient-to-br from-ocean-600 to-rich-beige-600 rounded-lg flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-cream-50" />
                 </div>
-                <h1 className="text-xl font-bold text-gray-900">Dev Shelf</h1>
+                <h1 className="text-xl font-bold text-black">ToolHub</h1>
               </div>
             </div>
 
             <div className="hidden md:flex items-center space-x-4">
               <div className="relative">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
                 <Input
                   type="text"
                   placeholder="Search tools..."
-                  className="pl-10 w-64"
+                  className="pl-10 w-64 bg-white border-warm-beige-300 text-black placeholder-gray-500"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -245,13 +245,13 @@ export default function Home() {
 
           {/* Mobile Search */}
           {isMobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-200">
+            <div className="md:hidden py-4 border-t border-warm-beige-300">
               <div className="relative">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
                 <Input
                   type="text"
                   placeholder="Search tools..."
-                  className="pl-10 w-full"
+                  className="pl-10 w-full bg-white border-warm-beige-300 text-black placeholder-gray-500"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -264,25 +264,29 @@ export default function Home() {
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold text-black mb-6">
             All-in-One
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-ocean-500 to-ocean-700">
               {" "}
               Tool Suite
             </span>
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
             Everything you need for productivity, learning, and daily tasks.
             Professional-grade tools that are completely free to use.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="bg-ocean-500 hover:bg-ocean-600 text-black font-semibold"
             >
               Explore Tools
             </Button>
-            <Button variant="outline" size="lg">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-gray-300 text-black hover:bg-gray-50"
+            >
               View All Categories
             </Button>
           </div>
@@ -293,10 +297,10 @@ export default function Home() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h3 className="text-3xl font-bold text-black mb-4">
               Choose Your Category
             </h3>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-700">
               Discover tools organized by purpose to help you work smarter
             </p>
           </div>
@@ -307,7 +311,7 @@ export default function Home() {
               return (
                 <Card
                   key={category.id}
-                  className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-1"
+                  className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-1 bg-white border-gray-200"
                 >
                   <CardHeader className="pb-4">
                     <div className="flex items-center space-x-3 mb-3">
@@ -317,10 +321,10 @@ export default function Home() {
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <CardTitle className="text-lg">
+                        <CardTitle className="text-lg text-black">
                           {category.title}
                         </CardTitle>
-                        <CardDescription className="text-sm">
+                        <CardDescription className="text-sm text-gray-600">
                           {category.description}
                         </CardDescription>
                       </div>
@@ -332,10 +336,10 @@ export default function Home() {
                         <Link key={index} href={tool.path}>
                           <div className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors group/tool">
                             <div>
-                              <div className="font-medium text-gray-900 text-sm">
+                              <div className="font-medium text-black text-sm">
                                 {tool.name}
                               </div>
-                              <div className="text-xs text-gray-500">
+                              <div className="text-xs text-gray-600">
                                 {tool.description}
                               </div>
                             </div>
@@ -348,7 +352,7 @@ export default function Home() {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="text-blue-600 hover:text-blue-700"
+                            className="text-ocean-500 hover:text-ocean-600 hover:bg-ocean-50"
                           >
                             View All {category.tools.length} Tools
                           </Button>
@@ -364,24 +368,24 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white/50 backdrop-blur-sm">
+      <section className="py-16 bg-cream-100/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">25+</div>
-              <div className="text-gray-600">Free Tools</div>
+              <div className="text-3xl font-bold text-black mb-2">25+</div>
+              <div className="text-gray-700">Free Tools</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">5</div>
-              <div className="text-gray-600">Categories</div>
+              <div className="text-3xl font-bold text-black mb-2">5</div>
+              <div className="text-gray-700">Categories</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">100%</div>
-              <div className="text-gray-600">Free to Use</div>
+              <div className="text-3xl font-bold text-black mb-2">100%</div>
+              <div className="text-gray-700">Free to Use</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600">Available</div>
+              <div className="text-3xl font-bold text-black mb-2">24/7</div>
+              <div className="text-gray-700">Available</div>
             </div>
           </div>
         </div>
@@ -393,12 +397,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                  <FileText className="w-5 h-5 text-white" />
+                <div className="w-8 h-8 bg-ocean-500 rounded-lg flex items-center justify-center">
+                  <FileText className="w-5 h-5 text-black" />
                 </div>
                 <h3 className="text-xl font-bold">ToolHub</h3>
               </div>
-              <p className="text-gray-400 mb-4">
+              <p className="text-gray-300 mb-4">
                 Your one-stop destination for professional-grade online tools.
                 Everything you need to boost productivity and streamline your
                 workflow.
@@ -406,7 +410,7 @@ export default function Home() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Categories</h4>
-              <div className="space-y-2 text-gray-400">
+              <div className="space-y-2 text-gray-300">
                 <div>Productivity Tools</div>
                 <div>AI-Powered Tools</div>
                 <div>Calculators</div>
@@ -416,7 +420,7 @@ export default function Home() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Support</h4>
-              <div className="space-y-2 text-gray-400">
+              <div className="space-y-2 text-gray-300">
                 <div>Help Center</div>
                 <div>Contact Us</div>
                 <div>Privacy Policy</div>
@@ -424,7 +428,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 pt-8 mt-8 text-center text-gray-400">
+          <div className="border-t border-gray-800 pt-8 mt-8 text-center text-gray-300">
             <p>
               &copy; 2024 ToolHub. All rights reserved. Made with ❤️ for
               productivity.

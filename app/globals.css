@@ -18,57 +18,107 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    /* Custom Color Palette Variables */
+    --ocean-50: 195 100% 97%;
+    --ocean-100: 195 100% 94%;
+    --ocean-200: 195 100% 88%;
+    --ocean-300: 195 100% 82%;
+    --ocean-400: 195 100% 76%;
+    --ocean-500: 195 100% 70%; /* Base #BBDCE5 */
+    --ocean-600: 195 100% 64%;
+    --ocean-700: 195 100% 58%;
+    --ocean-800: 195 100% 52%;
+    --ocean-900: 195 100% 46%;
+    --ocean-950: 195 100% 40%;
+
+    --cream-50: 60 100% 99%;
+    --cream-100: 60 100% 98%;
+    --cream-200: 60 100% 96%;
+    --cream-300: 60 100% 94%;
+    --cream-400: 60 100% 92%;
+    --cream-500: 60 100% 90%; /* Base #ECEEDF */
+    --cream-600: 60 100% 88%;
+    --cream-700: 60 100% 86%;
+    --cream-800: 60 100% 84%;
+    --cream-900: 60 100% 82%;
+    --cream-950: 60 100% 80%;
+
+    --warm-beige-50: 30 100% 98%;
+    --warm-beige-100: 30 100% 96%;
+    --warm-beige-200: 30 100% 92%;
+    --warm-beige-300: 30 100% 88%;
+    --warm-beige-400: 30 100% 84%;
+    --warm-beige-500: 30 100% 80%; /* Base #D9C4B0 */
+    --warm-beige-600: 30 100% 76%;
+    --warm-beige-700: 30 100% 72%;
+    --warm-beige-800: 30 100% 68%;
+    --warm-beige-900: 30 100% 64%;
+    --warm-beige-950: 30 100% 60%;
+
+    --rich-beige-50: 25 100% 97%;
+    --rich-beige-100: 25 100% 94%;
+    --rich-beige-200: 25 100% 88%;
+    --rich-beige-300: 25 100% 82%;
+    --rich-beige-400: 25 100% 76%;
+    --rich-beige-500: 25 100% 70%; /* Base #CFAB8D */
+    --rich-beige-600: 25 100% 64%;
+    --rich-beige-700: 25 100% 58%;
+    --rich-beige-800: 25 100% 52%;
+    --rich-beige-900: 25 100% 46%;
+    --rich-beige-950: 25 100% 40%;
+
+    /* Semantic Colors - Professional Black/White Text with Ocean Accents */
+    --background: var(--cream-50);
+    --foreground: 0 0% 9%; /* Pure black for text */
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 0 0% 9%; /* Pure black for card text */
+    --popover: 0 0% 100%; /* Pure white for popovers */
+    --popover-foreground: 0 0% 9%; /* Pure black for popover text */
+    --primary: var(--ocean-500); /* #BBDCE5 for buttons */
+    --primary-foreground: 0 0% 9%; /* Black text on ocean buttons */
+    --secondary: var(--warm-beige-200);
+    --secondary-foreground: 0 0% 9%; /* Black text on secondary */
+    --muted: var(--cream-200);
+    --muted-foreground: 0 0% 45%; /* Professional gray for muted text */
+    --accent: var(--ocean-100);
+    --accent-foreground: 0 0% 9%; /* Black text on accent */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --border: var(--warm-beige-300);
+    --input: var(--warm-beige-200);
+    --ring: var(--ocean-500);
+    --chart-1: var(--ocean-500);
+    --chart-2: var(--warm-beige-500);
+    --chart-3: var(--rich-beige-500);
+    --chart-4: var(--ocean-700);
+    --chart-5: var(--warm-beige-700);
     --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
+    --background: var(--rich-beige-950);
+    --foreground: 0 0% 98%; /* Pure white for dark mode text */
+    --card: var(--rich-beige-900);
+    --card-foreground: 0 0% 98%; /* Pure white for dark mode card text */
+    --popover: var(--rich-beige-900);
+    --popover-foreground: 0 0% 98%; /* Pure white for dark mode popover text */
+    --primary: var(--ocean-400); /* Lighter ocean for dark mode buttons */
+    --primary-foreground: 0 0% 9%; /* Black text on ocean buttons */
+    --secondary: var(--rich-beige-800);
+    --secondary-foreground: 0 0% 98%; /* White text on secondary in dark mode */
+    --muted: var(--rich-beige-800);
+    --muted-foreground: 0 0% 70%; /* Professional light gray for muted text */
+    --accent: var(--ocean-800);
+    --accent-foreground: 0 0% 98%; /* White text on accent in dark mode */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: var(--rich-beige-700);
+    --input: var(--rich-beige-800);
+    --ring: var(--ocean-600);
+    --chart-1: var(--ocean-400);
+    --chart-2: var(--warm-beige-400);
+    --chart-3: var(--rich-beige-400);
+    --chart-4: var(--ocean-600);
+    --chart-5: var(--warm-beige-600);
   }
 }
 
