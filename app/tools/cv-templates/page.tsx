@@ -190,18 +190,18 @@ export default function CVTemplates() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <FileText className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">CV Templates</h1>
+              <FileText className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">CV Templates</h1>
             </div>
           </div>
         </div>
@@ -211,8 +211,8 @@ export default function CVTemplates() {
         <div className="space-y-8">
           {/* Hero Section */}
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold text-gray-900">Professional CV Templates</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground">Professional CV Templates</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Choose from country-specific CV templates designed for different industries and career levels. 
               All templates are professionally designed and ATS-friendly.
             </p>
@@ -273,10 +273,10 @@ export default function CVTemplates() {
 
           {/* Results Count */}
           <div className="flex items-center justify-between">
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               Showing {filteredTemplates.length} template{filteredTemplates.length !== 1 ? 's' : ''}
             </p>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-muted-foreground">
               Total downloads: {cvTemplates.reduce((sum, template) => sum + template.downloads, 0).toLocaleString()}
             </div>
           </div>
@@ -290,8 +290,8 @@ export default function CVTemplates() {
                     <div className="space-y-1">
                       <CardTitle className="text-lg">{template.name}</CardTitle>
                       <div className="flex items-center space-x-2">
-                        <Globe className="w-4 h-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">{template.country}</span>
+                        <Globe className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm text-muted-foreground">{template.country}</span>
                       </div>
                     </div>
                     <div className="flex items-center space-x-1">
@@ -303,8 +303,8 @@ export default function CVTemplates() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {/* Preview Image Placeholder */}
-                  <div className="aspect-[3/4] bg-gray-100 rounded-lg flex items-center justify-center border">
-                    <div className="text-center text-gray-500">
+                  <div className="aspect-[3/4] bg-accent rounded-lg flex items-center justify-center border">
+                    <div className="text-center text-muted-foreground">
                       <FileText className="w-12 h-12 mx-auto mb-2" />
                       <p className="text-sm">CV Preview</p>
                     </div>
@@ -313,7 +313,7 @@ export default function CVTemplates() {
                   {/* Template Info */}
                   <div className="space-y-3">
                     <div>
-                      <h4 className="text-sm font-medium text-gray-900 mb-2">Industries</h4>
+                      <h4 className="text-sm font-medium text-foreground mb-2">Industries</h4>
                       <div className="flex flex-wrap gap-1">
                         {template.industry.slice(0, 3).map((industry) => (
                           <Badge key={industry} variant="secondary" className="text-xs">
@@ -329,18 +329,18 @@ export default function CVTemplates() {
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-medium text-gray-900 mb-2">Features</h4>
+                      <h4 className="text-sm font-medium text-foreground mb-2">Features</h4>
                       <div className="space-y-1">
                         {template.features.slice(0, 2).map((feature, index) => (
-                          <div key={index} className="flex items-center space-x-2 text-xs text-gray-600">
-                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
+                          <div key={index} className="flex items-center space-x-2 text-xs text-muted-foreground">
+                            <div className="w-1.5 h-1.5 bg-background0 rounded-full"></div>
                             <span>{feature}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between text-sm text-gray-500">
+                    <div className="flex items-center justify-between text-sm text-muted-foreground">
                       <span>{template.downloads.toLocaleString()} downloads</span>
                       <Badge 
                         variant={template.style === 'modern' ? 'default' : 
@@ -382,9 +382,9 @@ export default function CVTemplates() {
           {filteredTemplates.length === 0 && (
             <Card className="shadow-lg border-0">
               <CardContent className="py-12 text-center">
-                <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No templates found</h3>
-                <p className="text-gray-600 mb-4">Try adjusting your filters to see more templates</p>
+                <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">No templates found</h3>
+                <p className="text-muted-foreground mb-4">Try adjusting your filters to see more templates</p>
                 <Button 
                   onClick={() => {
                     setSelectedCountry('All Countries');
@@ -412,7 +412,7 @@ export default function CVTemplates() {
                     <span>🇺🇸</span>
                     <span>United States</span>
                   </h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
+                  <ul className="text-sm text-muted-foreground space-y-1">
                     <li>• Keep to 1 page for most roles</li>
                     <li>• No photo or personal details</li>
                     <li>• Focus on achievements</li>
@@ -424,7 +424,7 @@ export default function CVTemplates() {
                     <span>🇬🇧</span>
                     <span>United Kingdom</span>
                   </h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
+                  <ul className="text-sm text-muted-foreground space-y-1">
                     <li>• 2 pages maximum</li>
                     <li>• Include personal statement</li>
                     <li>• List references</li>
@@ -436,7 +436,7 @@ export default function CVTemplates() {
                     <span>🇩🇪</span>
                     <span>Germany</span>
                   </h4>
-                  <ul className="text-sm text-gray-600 space-y-1">
+                  <ul className="text-sm text-muted-foreground space-y-1">
                     <li>• Include professional photo</li>
                     <li>• Very detailed format</li>
                     <li>• Include personal information</li>
@@ -452,12 +452,12 @@ export default function CVTemplates() {
       {/* Preview Modal */}
       {previewTemplate && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-card rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="text-xl font-semibold">{previewTemplate.name}</h3>
-                  <p className="text-gray-600">{previewTemplate.description}</p>
+                  <p className="text-muted-foreground">{previewTemplate.description}</p>
                 </div>
                 <Button variant="ghost" onClick={closePreview}>
                   ×
@@ -483,7 +483,7 @@ export default function CVTemplates() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {previewTemplate.features.map((feature, index) => (
                       <div key={index} className="flex items-center space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-background0 rounded-full"></div>
                         <span>{feature}</span>
                       </div>
                     ))}
@@ -491,8 +491,8 @@ export default function CVTemplates() {
                 </div>
 
                 {/* Preview Image Placeholder */}
-                <div className="aspect-[3/4] bg-gray-100 rounded-lg flex items-center justify-center border">
-                  <div className="text-center text-gray-500">
+                <div className="aspect-[3/4] bg-accent rounded-lg flex items-center justify-center border">
+                  <div className="text-center text-muted-foreground">
                     <FileText className="w-16 h-16 mx-auto mb-4" />
                     <p>Full CV Preview</p>
                     <p className="text-sm">Download to see complete template</p>

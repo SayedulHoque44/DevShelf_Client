@@ -229,18 +229,18 @@ IMPORTANT REMINDERS
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <Plane className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Schengen Budget Planner</h1>
+              <Plane className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Schengen Budget Planner</h1>
             </div>
           </div>
         </div>
@@ -254,7 +254,7 @@ IMPORTANT REMINDERS
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <MapPin className="w-5 h-5 text-blue-600" />
+                  <MapPin className="w-5 h-5 text-primary" />
                   <span>Plan Your Trip</span>
                 </CardTitle>
                 <CardDescription>
@@ -361,7 +361,7 @@ IMPORTANT REMINDERS
                             <span className="text-2xl">{country?.flag}</span>
                             <div>
                               <h3 className="font-semibold">{country?.name}</h3>
-                              <p className="text-sm text-gray-600">
+                              <p className="text-sm text-muted-foreground">
                                 {segment.days} days • {segment.budgetLevel} • €{(dailyTotal * segment.days).toFixed(2)} total
                               </p>
                             </div>
@@ -423,7 +423,7 @@ IMPORTANT REMINDERS
                           </div>
                         </div>
 
-                        <div className="text-center p-2 bg-gray-50 rounded">
+                        <div className="text-center p-2 bg-background rounded">
                           <span className="font-medium">Daily Total: €{dailyTotal.toFixed(2)}</span>
                         </div>
                       </div>
@@ -467,7 +467,7 @@ IMPORTANT REMINDERS
                 <Card className="shadow-lg border-0">
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
-                      <Euro className="w-5 h-5 text-blue-600" />
+                      <Euro className="w-5 h-5 text-primary" />
                       <span>Budget Summary</span>
                     </CardTitle>
                     <CardDescription>
@@ -480,17 +480,17 @@ IMPORTANT REMINDERS
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600">
+                      <div className="text-3xl font-bold text-primary">
                         €{budgetBreakdown.totalCost.toFixed(2)}
                       </div>
-                      <div className="text-sm text-gray-600">Total Trip Cost</div>
+                      <div className="text-sm text-muted-foreground">Total Trip Cost</div>
                     </div>
 
-                    <div className="text-center p-3 bg-blue-50 rounded-lg">
+                    <div className="text-center p-3 bg-background rounded-lg">
                       <div className="text-xl font-semibold text-blue-700">
                         €{budgetBreakdown.dailyAverage.toFixed(2)}
                       </div>
-                      <div className="text-sm text-blue-600">Average per day</div>
+                      <div className="text-sm text-primary">Average per day</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -498,7 +498,7 @@ IMPORTANT REMINDERS
                 <Card className="shadow-lg border-0">
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
-                      <PieChart className="w-5 h-5 text-blue-600" />
+                      <PieChart className="w-5 h-5 text-primary" />
                       <span>By Category</span>
                     </CardTitle>
                   </CardHeader>
@@ -511,13 +511,13 @@ IMPORTANT REMINDERS
                             <span className="capitalize">{category}</span>
                             <span>€{amount.toFixed(2)}</span>
                           </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="w-full bg-accent rounded-full h-2">
                             <div 
                               className="bg-blue-600 h-2 rounded-full" 
                               style={{ width: `${percentage}%` }}
                             ></div>
                           </div>
-                          <div className="text-xs text-gray-500 text-right">
+                          <div className="text-xs text-muted-foreground text-right">
                             {percentage.toFixed(1)}%
                           </div>
                         </div>
@@ -542,7 +542,7 @@ IMPORTANT REMINDERS
                           </div>
                           <div className="text-right">
                             <div className="text-sm font-medium">€{amount.toFixed(2)}</div>
-                            <div className="text-xs text-gray-500">{percentage.toFixed(1)}%</div>
+                            <div className="text-xs text-muted-foreground">{percentage.toFixed(1)}%</div>
                           </div>
                         </div>
                       );
@@ -552,8 +552,8 @@ IMPORTANT REMINDERS
               </>
             ) : (
               <Card className="shadow-lg border-0">
-                <CardContent className="py-12 text-center text-gray-500">
-                  <Euro className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                <CardContent className="py-12 text-center text-muted-foreground">
+                  <Euro className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                   <p>Add destinations to see your budget breakdown</p>
                   <p className="text-sm">Plan your Schengen area trip with accurate cost estimates</p>
                 </CardContent>
@@ -567,23 +567,23 @@ IMPORTANT REMINDERS
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Add 10-20% buffer for unexpected expenses</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Book accommodations early for better rates</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Consider city passes for attractions</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Use public transport for savings</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Check free walking tours and museums</span>
                 </div>
               </CardContent>

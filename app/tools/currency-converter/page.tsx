@@ -116,18 +116,18 @@ export default function CurrencyConverter() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <DollarSign className="w-6 h-6 text-green-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Currency Converter</h1>
+              <DollarSign className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Currency Converter</h1>
             </div>
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function CurrencyConverter() {
           <Card className="shadow-lg border-0">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <DollarSign className="w-5 h-5 text-green-600" />
+                <DollarSign className="w-5 h-5 text-primary" />
                 <span>Convert Currency</span>
               </CardTitle>
               <CardDescription>
@@ -173,7 +173,7 @@ export default function CurrencyConverter() {
                         <div className="flex items-center space-x-2">
                           <span>{currency.flag}</span>
                           <span>{currency.code}</span>
-                          <span className="text-gray-500">- {currency.name}</span>
+                          <span className="text-muted-foreground">- {currency.name}</span>
                         </div>
                       </SelectItem>
                     ))}
@@ -206,7 +206,7 @@ export default function CurrencyConverter() {
                         <div className="flex items-center space-x-2">
                           <span>{currency.flag}</span>
                           <span>{currency.code}</span>
-                          <span className="text-gray-500">- {currency.name}</span>
+                          <span className="text-muted-foreground">- {currency.name}</span>
                         </div>
                       </SelectItem>
                     ))}
@@ -235,20 +235,20 @@ export default function CurrencyConverter() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <TrendingUp className="w-5 h-5 text-green-600" />
+                  <TrendingUp className="w-5 h-5 text-primary" />
                   <span>Conversion Result</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="text-center">
-                  <div className="text-2xl font-semibold text-gray-600 mb-2">
+                  <div className="text-2xl font-semibold text-muted-foreground mb-2">
                     {formatCurrency(parseFloat(amount), fromCurrency)}
                   </div>
-                  <div className="text-4xl font-bold text-gray-900 mb-2">
+                  <div className="text-4xl font-bold text-foreground mb-2">
                     {formatCurrency(result, toCurrency)}
                   </div>
                   {rate && (
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-muted-foreground">
                       1 {fromCurrency} = {rate.toFixed(4)} {toCurrency}
                     </div>
                   )}
@@ -263,10 +263,10 @@ export default function CurrencyConverter() {
 
                 {/* Quick Convert */}
                 <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-900">Quick Convert</h4>
+                  <h4 className="font-semibold text-foreground">Quick Convert</h4>
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     {[1, 5, 10, 100, 500, 1000].map((quickAmount) => (
-                      <div key={quickAmount} className="flex justify-between p-2 rounded bg-gray-50">
+                      <div key={quickAmount} className="flex justify-between p-2 rounded bg-background">
                         <span>{quickAmount} {fromCurrency}</span>
                         <span className="font-mono">
                           {rate ? formatCurrency(quickAmount * rate, toCurrency) : '—'}
@@ -284,7 +284,7 @@ export default function CurrencyConverter() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Globe className="w-5 h-5 text-green-600" />
+                  <Globe className="w-5 h-5 text-primary" />
                   <span>Popular Exchange Rates</span>
                 </CardTitle>
               </CardHeader>
@@ -298,11 +298,11 @@ export default function CurrencyConverter() {
                     { from: 'USD', to: 'CAD', rate: 1.25 },
                     { from: 'USD', to: 'AUD', rate: 1.35 }
                   ].map((item, index) => (
-                    <div key={index} className="flex justify-between items-center p-3 rounded bg-gray-50">
+                    <div key={index} className="flex justify-between items-center p-3 rounded bg-background">
                       <div className="flex items-center space-x-2">
                         <span className="font-medium">{item.from}/{item.to}</span>
                       </div>
-                      <span className="font-mono text-gray-600">{item.rate.toFixed(4)}</span>
+                      <span className="font-mono text-muted-foreground">{item.rate.toFixed(4)}</span>
                     </div>
                   ))}
                 </div>

@@ -284,17 +284,17 @@ export default function IELTSVocabulary() {
 
   if (quizMode && showResult && quizResult) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
-        <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
+        <header className="bg-card/80 backdrop-blur-md border-b border-border">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
                 <ArrowLeft className="w-5 h-5" />
                 <span>Back to Tools</span>
               </Link>
               <div className="flex items-center space-x-2">
-                <BookOpen className="w-6 h-6 text-purple-600" />
-                <h1 className="text-xl font-semibold text-gray-900">Quiz Results</h1>
+                <BookOpen className="w-6 h-6 text-primary" />
+                <h1 className="text-xl font-semibold text-foreground">Quiz Results</h1>
               </div>
             </div>
           </div>
@@ -307,9 +307,9 @@ export default function IELTSVocabulary() {
                 quizResult.score >= 70 ? 'bg-green-100' : 'bg-orange-100'
               }`}>
                 {quizResult.score >= 70 ? (
-                  <Trophy className="w-10 h-10 text-green-600" />
+                  <Trophy className="w-10 h-10 text-primary" />
                 ) : (
-                  <Target className="w-10 h-10 text-orange-600" />
+                  <Target className="w-10 h-10 text-primary" />
                 )}
               </div>
               <CardTitle className="text-2xl">
@@ -321,17 +321,17 @@ export default function IELTSVocabulary() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-gray-900">{quizResult.score}%</div>
-                  <div className="text-sm text-gray-600">Score</div>
+                <div className="text-center p-4 bg-background rounded-lg">
+                  <div className="text-2xl font-bold text-foreground">{quizResult.score}%</div>
+                  <div className="text-sm text-muted-foreground">Score</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-gray-900">{Math.floor(quizResult.timeSpent / 60)}:{(quizResult.timeSpent % 60).toString().padStart(2, '0')}</div>
-                  <div className="text-sm text-gray-600">Time</div>
+                <div className="text-center p-4 bg-background rounded-lg">
+                  <div className="text-2xl font-bold text-foreground">{Math.floor(quizResult.timeSpent / 60)}:{(quizResult.timeSpent % 60).toString().padStart(2, '0')}</div>
+                  <div className="text-sm text-muted-foreground">Time</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-gray-900">{quizResult.correctWords.length}/{quizResult.totalQuestions}</div>
-                  <div className="text-sm text-gray-600">Correct</div>
+                <div className="text-center p-4 bg-background rounded-lg">
+                  <div className="text-2xl font-bold text-foreground">{quizResult.correctWords.length}/{quizResult.totalQuestions}</div>
+                  <div className="text-sm text-muted-foreground">Correct</div>
                 </div>
               </div>
 
@@ -370,18 +370,18 @@ export default function IELTSVocabulary() {
     const progress = ((currentQuizIndex + 1) / quizQuestions.length) * 100;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
-        <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
+        <header className="bg-card/80 backdrop-blur-md border-b border-border">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <Button variant="ghost" onClick={resetQuiz}>
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <div className="flex items-center space-x-2">
-                <Brain className="w-6 h-6 text-purple-600" />
-                <h1 className="text-xl font-semibold text-gray-900">Vocabulary Quiz</h1>
+                <Brain className="w-6 h-6 text-primary" />
+                <h1 className="text-xl font-semibold text-foreground">Vocabulary Quiz</h1>
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 {currentQuizIndex + 1} of {quizQuestions.length}
               </div>
             </div>
@@ -391,7 +391,7 @@ export default function IELTSVocabulary() {
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="space-y-6">
             <div className="space-y-2">
-              <div className="flex justify-between text-sm text-gray-600">
+              <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Progress</span>
                 <span>{Math.round(progress)}%</span>
               </div>
@@ -401,9 +401,9 @@ export default function IELTSVocabulary() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="text-2xl text-center">
-                  What does "<span className="text-purple-600">{currentQuizWord.word}</span>" mean?
+                  What does "<span className="text-primary">{currentQuizWord.word}</span>" mean?
                 </CardTitle>
-                <div className="text-center text-gray-600">
+                <div className="text-center text-muted-foreground">
                   <span className="text-sm">{currentQuizWord.pronunciation}</span>
                   <Badge variant="secondary" className="ml-2">{currentQuizWord.partOfSpeech}</Badge>
                 </div>
@@ -416,8 +416,8 @@ export default function IELTSVocabulary() {
                       onClick={() => handleQuizAnswer(option)}
                       className={`w-full p-4 text-left border-2 rounded-lg transition-colors ${
                         selectedAnswer === option
-                          ? 'border-purple-500 bg-purple-50 text-purple-800'
-                          : 'border-gray-200 hover:border-purple-300 hover:bg-purple-50'
+                          ? 'border-purple-500 bg-background text-purple-800'
+                          : 'border-border hover:border-purple-300 hover:bg-background'
                       }`}
                     >
                       <div className="flex items-center space-x-3">
@@ -454,17 +454,17 @@ export default function IELTSVocabulary() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <BookOpen className="w-6 h-6 text-purple-600" />
-              <h1 className="text-xl font-semibold text-gray-900">IELTS Vocabulary Builder</h1>
+              <BookOpen className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">IELTS Vocabulary Builder</h1>
             </div>
           </div>
         </div>
@@ -560,7 +560,7 @@ export default function IELTSVocabulary() {
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`w-4 h-4 ${i < currentWord.ieltsFrequency / 2 ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                            className={`w-4 h-4 ${i < currentWord.ieltsFrequency / 2 ? 'text-yellow-400 fill-current' : 'text-muted-foreground'}`}
                           />
                         ))}
                       </div>
@@ -569,7 +569,7 @@ export default function IELTSVocabulary() {
                       variant="ghost"
                       size="sm"
                       onClick={() => toggleWordMastery(currentWord.id)}
-                      className={masteredWords.has(currentWord.id) ? 'text-green-600' : 'text-gray-400'}
+                      className={masteredWords.has(currentWord.id) ? 'text-primary' : 'text-muted-foreground'}
                     >
                       <CheckCircle className="w-5 h-5" />
                     </Button>
@@ -579,17 +579,17 @@ export default function IELTSVocabulary() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Definition</h3>
-                    <p className="text-gray-700">{currentWord.definition}</p>
+                    <h3 className="font-semibold text-foreground mb-2">Definition</h3>
+                    <p className="text-foreground">{currentWord.definition}</p>
                   </div>
                   
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Example</h3>
-                    <p className="text-gray-700 italic">"{currentWord.example}"</p>
+                    <h3 className="font-semibold text-foreground mb-2">Example</h3>
+                    <p className="text-foreground italic">"{currentWord.example}"</p>
                   </div>
                   
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Synonyms</h3>
+                    <h3 className="font-semibold text-foreground mb-2">Synonyms</h3>
                     <div className="flex flex-wrap gap-2">
                       {currentWord.synonyms.map((synonym, index) => (
                         <Badge key={index} variant="secondary">{synonym}</Badge>
@@ -601,7 +601,7 @@ export default function IELTSVocabulary() {
                     <Button variant="outline" onClick={previousWord}>
                       Previous
                     </Button>
-                    <span className="text-sm text-gray-500 self-center">
+                    <span className="text-sm text-muted-foreground self-center">
                       {currentWordIndex + 1} of {filteredWords.length}
                     </span>
                     <Button onClick={nextWord}>
@@ -626,7 +626,7 @@ export default function IELTSVocabulary() {
                   {!showFlashcardAnswer ? (
                     <div className="space-y-4">
                       <h2 className="text-4xl font-bold">{currentWord.word}</h2>
-                      <p className="text-xl text-gray-600">{currentWord.pronunciation}</p>
+                      <p className="text-xl text-muted-foreground">{currentWord.pronunciation}</p>
                       <Button onClick={() => setShowFlashcardAnswer(true)}>
                         Show Definition
                       </Button>
@@ -634,9 +634,9 @@ export default function IELTSVocabulary() {
                   ) : (
                     <div className="space-y-4">
                       <h2 className="text-4xl font-bold">{currentWord.word}</h2>
-                      <p className="text-xl text-gray-600">{currentWord.pronunciation}</p>
+                      <p className="text-xl text-muted-foreground">{currentWord.pronunciation}</p>
                       <p className="text-lg">{currentWord.definition}</p>
-                      <p className="text-gray-600 italic">"{currentWord.example}"</p>
+                      <p className="text-muted-foreground italic">"{currentWord.example}"</p>
                       <div className="flex space-x-4">
                         <Button variant="outline" onClick={() => {
                           toggleWordMastery(currentWord.id);
@@ -657,7 +657,7 @@ export default function IELTSVocabulary() {
                     <Button variant="ghost" onClick={previousWord}>
                       Previous
                     </Button>
-                    <span className="text-sm text-gray-500 self-center">
+                    <span className="text-sm text-muted-foreground self-center">
                       {currentWordIndex + 1} of {filteredWords.length}
                     </span>
                     <Button variant="ghost" onClick={nextWord}>
@@ -677,12 +677,12 @@ export default function IELTSVocabulary() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-purple-600">{masteredWords.size}</div>
-                  <div className="text-sm text-gray-600">Words Mastered</div>
+                  <div className="text-2xl font-bold text-primary">{masteredWords.size}</div>
+                  <div className="text-sm text-muted-foreground">Words Mastered</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">{filteredWords.length}</div>
-                  <div className="text-sm text-gray-600">Total Words</div>
+                  <div className="text-2xl font-bold text-primary">{filteredWords.length}</div>
+                  <div className="text-sm text-muted-foreground">Total Words</div>
                 </div>
                 <Progress value={(masteredWords.size / filteredWords.length) * 100} className="w-full" />
               </CardContent>
@@ -694,19 +694,19 @@ export default function IELTSVocabulary() {
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Focus on high-frequency words for better exam performance</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Practice using new words in context</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Review synonyms to improve your writing variety</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Learn pronunciation to boost speaking scores</span>
                 </div>
               </CardContent>

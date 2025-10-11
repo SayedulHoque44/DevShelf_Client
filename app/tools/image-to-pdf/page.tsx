@@ -228,18 +228,18 @@ export default function ImageToPDF() {
   const selectedCount = uploadedImages.filter(img => img.selected).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <FileImage className="w-6 h-6 text-orange-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Image to PDF Converter</h1>
+              <FileImage className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Image to PDF Converter</h1>
             </div>
           </div>
         </div>
@@ -252,7 +252,7 @@ export default function ImageToPDF() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Upload className="w-5 h-5 text-orange-600" />
+                  <Upload className="w-5 h-5 text-primary" />
                   <span>Upload Images</span>
                 </CardTitle>
                 <CardDescription>
@@ -264,8 +264,8 @@ export default function ImageToPDF() {
                 <div
                   className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${
                     dragActive 
-                      ? 'border-orange-500 bg-orange-50' 
-                      : 'border-gray-300 hover:border-orange-400'
+                      ? 'border-orange-500 bg-background' 
+                      : 'border-border hover:border-orange-400'
                   }`}
                   onDragEnter={handleDrag}
                   onDragLeave={handleDrag}
@@ -273,12 +273,12 @@ export default function ImageToPDF() {
                   onDrop={handleDrop}
                   onClick={() => fileInputRef.current?.click()}
                 >
-                  <FileImage className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <FileImage className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                   <div className="space-y-2">
-                    <p className="text-lg font-medium text-gray-700">
+                    <p className="text-lg font-medium text-foreground">
                       Drag & drop images here
                     </p>
-                    <p className="text-gray-500">or click to browse files</p>
+                    <p className="text-muted-foreground">or click to browse files</p>
                   </div>
                   <input
                     ref={fileInputRef}
@@ -366,7 +366,7 @@ export default function ImageToPDF() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto">
                       {uploadedImages.map((image, index) => (
                         <div key={image.id} className={`flex items-center space-x-3 p-3 rounded-lg border-2 transition-colors ${
-                          image.selected ? 'border-orange-200 bg-orange-50' : 'border-gray-200 bg-gray-50'
+                          image.selected ? 'border-orange-200 bg-background' : 'border-border bg-background'
                         }`}>
                           <Checkbox
                             checked={image.selected}
@@ -394,10 +394,10 @@ export default function ImageToPDF() {
                               </div>
                             ) : (
                               <div>
-                                <p className="text-sm font-medium text-gray-900 truncate">
+                                <p className="text-sm font-medium text-foreground truncate">
                                   {image.name}
                                 </p>
-                                <p className="text-xs text-gray-500">
+                                <p className="text-xs text-muted-foreground">
                                   {(image.file.size / 1024 / 1024).toFixed(2)} MB
                                 </p>
                               </div>
@@ -455,7 +455,7 @@ export default function ImageToPDF() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <FileText className="w-5 h-5 text-orange-600" />
+                  <FileText className="w-5 h-5 text-primary" />
                   <span>Generated PDFs</span>
                 </CardTitle>
                 <CardDescription>
@@ -469,7 +469,7 @@ export default function ImageToPDF() {
                 {generatedPDFs.length > 0 ? (
                   <div className="space-y-4 max-h-96 overflow-y-auto">
                     {generatedPDFs.map((pdf) => (
-                      <div key={pdf.id} className="p-4 bg-gray-50 rounded-lg border">
+                      <div key={pdf.id} className="p-4 bg-background rounded-lg border">
                         <div className="space-y-3">
                           {editingPdfId === pdf.id ? (
                             <div className="flex space-x-2">
@@ -486,11 +486,11 @@ export default function ImageToPDF() {
                           ) : (
                             <div className="flex items-center justify-between">
                               <div>
-                                <h4 className="font-medium text-gray-900">{pdf.name}.pdf</h4>
-                                <p className="text-sm text-gray-500">
+                                <h4 className="font-medium text-foreground">{pdf.name}.pdf</h4>
+                                <p className="text-sm text-muted-foreground">
                                   {pdf.imageCount} images • {(pdf.size / 1024 / 1024).toFixed(2)} MB
                                 </p>
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-muted-foreground">
                                   {pdf.createdAt.toLocaleString()}
                                 </p>
                               </div>
@@ -532,8 +532,8 @@ export default function ImageToPDF() {
                     ))}
                   </div>
                 ) : (
-                  <div className="py-8 text-center text-gray-500">
-                    <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <div className="py-8 text-center text-muted-foreground">
+                    <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                     <p>No PDFs generated yet</p>
                     <p className="text-sm">Convert images to see them here</p>
                   </div>
@@ -549,23 +549,23 @@ export default function ImageToPDF() {
               <CardContent>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Multiple image formats</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Batch conversion</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Custom page sizes</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Image selection</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>PDF management</span>
                   </div>
                 </div>

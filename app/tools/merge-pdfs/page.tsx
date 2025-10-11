@@ -210,18 +210,18 @@ export default function MergePDFs() {
   const totalPages = uploadedPDFs.reduce((sum, pdf) => sum + pdf.pages, 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <FileText className="w-6 h-6 text-green-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Merge PDF Files</h1>
+              <FileText className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Merge PDF Files</h1>
             </div>
           </div>
         </div>
@@ -234,7 +234,7 @@ export default function MergePDFs() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Upload className="w-5 h-5 text-green-600" />
+                  <Upload className="w-5 h-5 text-primary" />
                   <span>Upload PDF Files</span>
                 </CardTitle>
                 <CardDescription>
@@ -246,8 +246,8 @@ export default function MergePDFs() {
                 <div
                   className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${
                     dragActive 
-                      ? 'border-green-500 bg-green-50' 
-                      : 'border-gray-300 hover:border-green-400'
+                      ? 'border-green-500 bg-background' 
+                      : 'border-border hover:border-green-400'
                   }`}
                   onDragEnter={handleDrag}
                   onDragLeave={handleDrag}
@@ -255,12 +255,12 @@ export default function MergePDFs() {
                   onDrop={handleDrop}
                   onClick={() => fileInputRef.current?.click()}
                 >
-                  <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <FileText className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                   <div className="space-y-2">
-                    <p className="text-lg font-medium text-gray-700">
+                    <p className="text-lg font-medium text-foreground">
                       Drag & drop PDF files here
                     </p>
-                    <p className="text-gray-500">or click to browse files</p>
+                    <p className="text-muted-foreground">or click to browse files</p>
                   </div>
                   <input
                     ref={fileInputRef}
@@ -300,7 +300,7 @@ export default function MergePDFs() {
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="text-lg font-semibold">PDF Files ({uploadedPDFs.length})</h3>
-                        <p className="text-sm text-gray-500">Total pages: {totalPages}</p>
+                        <p className="text-sm text-muted-foreground">Total pages: {totalPages}</p>
                       </div>
                       <Button variant="outline" size="sm" onClick={clearAll}>
                         <Trash2 className="w-4 h-4 mr-1" />
@@ -312,7 +312,7 @@ export default function MergePDFs() {
                       {uploadedPDFs
                         .sort((a, b) => a.order - b.order)
                         .map((pdf, index) => (
-                        <div key={pdf.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg border">
+                        <div key={pdf.id} className="flex items-center space-x-4 p-4 bg-background rounded-lg border">
                           <div className="flex flex-col space-y-1">
                             <Button
                               variant="ghost"
@@ -335,19 +335,19 @@ export default function MergePDFs() {
                           </div>
                           <div className="flex-shrink-0">
                             <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                              <span className="text-sm font-medium text-green-600">{index + 1}</span>
+                              <span className="text-sm font-medium text-primary">{index + 1}</span>
                             </div>
                           </div>
                           <div className="flex-shrink-0">
                             <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                              <FileText className="w-6 h-6 text-red-600" />
+                              <FileText className="w-6 h-6 text-destructive" />
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
+                            <p className="text-sm font-medium text-foreground truncate">
                               {pdf.name}.pdf
                             </p>
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-muted-foreground">
                               {(pdf.size / 1024 / 1024).toFixed(2)} MB • {pdf.pages} pages
                             </p>
                           </div>
@@ -393,7 +393,7 @@ export default function MergePDFs() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <FileText className="w-5 h-5 text-green-600" />
+                  <FileText className="w-5 h-5 text-primary" />
                   <span>Merged PDFs</span>
                 </CardTitle>
                 <CardDescription>
@@ -407,7 +407,7 @@ export default function MergePDFs() {
                 {mergedPDFs.length > 0 ? (
                   <div className="space-y-4 max-h-96 overflow-y-auto">
                     {mergedPDFs.map((pdf) => (
-                      <div key={pdf.id} className="p-4 bg-gray-50 rounded-lg border">
+                      <div key={pdf.id} className="p-4 bg-background rounded-lg border">
                         <div className="space-y-3">
                           {editingPdfId === pdf.id ? (
                             <div className="flex space-x-2">
@@ -424,14 +424,14 @@ export default function MergePDFs() {
                           ) : (
                             <div className="flex items-center justify-between">
                               <div>
-                                <h4 className="font-medium text-gray-900">{pdf.name}.pdf</h4>
-                                <p className="text-sm text-gray-500">
+                                <h4 className="font-medium text-foreground">{pdf.name}.pdf</h4>
+                                <p className="text-sm text-muted-foreground">
                                   {pdf.totalPages} pages • {(pdf.size / 1024 / 1024).toFixed(2)} MB
                                 </p>
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-muted-foreground">
                                   From {pdf.sourceFiles.length} files
                                 </p>
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-muted-foreground">
                                   {pdf.createdAt.toLocaleString()}
                                 </p>
                               </div>
@@ -473,8 +473,8 @@ export default function MergePDFs() {
                     ))}
                   </div>
                 ) : (
-                  <div className="py-8 text-center text-gray-500">
-                    <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <div className="py-8 text-center text-muted-foreground">
+                    <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                     <p>No PDFs merged yet</p>
                     <p className="text-sm">Upload and merge PDFs to see them here</p>
                   </div>
@@ -490,23 +490,23 @@ export default function MergePDFs() {
               <CardContent>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Drag to reorder files</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Preserve quality</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Custom file names</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Batch processing</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Secure merging</span>
                   </div>
                 </div>

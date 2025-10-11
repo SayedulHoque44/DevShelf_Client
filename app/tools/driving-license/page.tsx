@@ -238,18 +238,18 @@ export default function DrivingLicensePractice() {
 
   if (!testStarted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
         {/* Header */}
-        <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <header className="bg-card/80 backdrop-blur-md border-b border-border">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
                 <ArrowLeft className="w-5 h-5" />
                 <span>Back to Tools</span>
               </Link>
               <div className="flex items-center space-x-2">
-                <Car className="w-6 h-6 text-blue-600" />
-                <h1 className="text-xl font-semibold text-gray-900">Driving License Practice</h1>
+                <Car className="w-6 h-6 text-primary" />
+                <h1 className="text-xl font-semibold text-foreground">Driving License Practice</h1>
               </div>
             </div>
           </div>
@@ -290,12 +290,12 @@ export default function DrivingLicensePractice() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 hover:border-blue-200">
                     <CardContent className="p-6 text-center">
-                      <Target className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                      <Target className="w-12 h-12 text-primary mx-auto mb-4" />
                       <h3 className="text-lg font-semibold mb-2">Practice Mode</h3>
-                      <p className="text-gray-600 text-sm mb-4">
+                      <p className="text-muted-foreground text-sm mb-4">
                         Learn with instant feedback and explanations
                       </p>
-                      <ul className="text-sm text-gray-500 space-y-1 mb-4">
+                      <ul className="text-sm text-muted-foreground space-y-1 mb-4">
                         <li>• Immediate feedback</li>
                         <li>• Detailed explanations</li>
                         <li>• No time limit</li>
@@ -313,12 +313,12 @@ export default function DrivingLicensePractice() {
 
                   <Card className="cursor-pointer hover:shadow-md transition-shadow border-2 hover:border-green-200">
                     <CardContent className="p-6 text-center">
-                      <Trophy className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                      <Trophy className="w-12 h-12 text-primary mx-auto mb-4" />
                       <h3 className="text-lg font-semibold mb-2">Exam Mode</h3>
-                      <p className="text-gray-600 text-sm mb-4">
+                      <p className="text-muted-foreground text-sm mb-4">
                         Simulate real exam conditions
                       </p>
-                      <ul className="text-sm text-gray-500 space-y-1 mb-4">
+                      <ul className="text-sm text-muted-foreground space-y-1 mb-4">
                         <li>• 30-minute time limit</li>
                         <li>• No immediate feedback</li>
                         <li>• 80% to pass</li>
@@ -351,28 +351,28 @@ export default function DrivingLicensePractice() {
               <Card className="text-center">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Car className="w-6 h-6 text-blue-600" />
+                    <Car className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">EU Standards</h3>
-                  <p className="text-sm text-gray-600">Questions based on European driving regulations and best practices</p>
+                  <p className="text-sm text-muted-foreground">Questions based on European driving regulations and best practices</p>
                 </CardContent>
               </Card>
               <Card className="text-center">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-6 h-6 text-green-600" />
+                    <Target className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Comprehensive</h3>
-                  <p className="text-sm text-gray-600">Covers all topics: traffic rules, safety, signs, and vehicle operation</p>
+                  <p className="text-sm text-muted-foreground">Covers all topics: traffic rules, safety, signs, and vehicle operation</p>
                 </CardContent>
               </Card>
               <Card className="text-center">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <Trophy className="w-6 h-6 text-purple-600" />
+                    <Trophy className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Track Progress</h3>
-                  <p className="text-sm text-gray-600">Monitor your improvement and identify areas for study</p>
+                  <p className="text-sm text-muted-foreground">Monitor your improvement and identify areas for study</p>
                 </CardContent>
               </Card>
             </div>
@@ -384,18 +384,18 @@ export default function DrivingLicensePractice() {
 
   if (testCompleted && testResult) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
         {/* Header */}
-        <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <header className="bg-card/80 backdrop-blur-md border-b border-border">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+              <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
                 <ArrowLeft className="w-5 h-5" />
                 <span>Back to Tools</span>
               </Link>
               <div className="flex items-center space-x-2">
-                <Car className="w-6 h-6 text-blue-600" />
-                <h1 className="text-xl font-semibold text-gray-900">Test Results</h1>
+                <Car className="w-6 h-6 text-primary" />
+                <h1 className="text-xl font-semibold text-foreground">Test Results</h1>
               </div>
             </div>
           </div>
@@ -408,9 +408,9 @@ export default function DrivingLicensePractice() {
                 testResult.passed ? 'bg-green-100' : 'bg-red-100'
               }`}>
                 {testResult.passed ? (
-                  <CheckCircle className="w-10 h-10 text-green-600" />
+                  <CheckCircle className="w-10 h-10 text-primary" />
                 ) : (
-                  <XCircle className="w-10 h-10 text-red-600" />
+                  <XCircle className="w-10 h-10 text-destructive" />
                 )}
               </div>
               <CardTitle className="text-2xl">
@@ -427,28 +427,28 @@ export default function DrivingLicensePractice() {
               {/* Score Display */}
               <div className="text-center">
                 <div className="text-4xl font-bold mb-2">
-                  <span className={testResult.passed ? 'text-green-600' : 'text-red-600'}>
+                  <span className={testResult.passed ? 'text-primary' : 'text-destructive'}>
                     {testResult.score}%
                   </span>
                 </div>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   {mockQuestions.length - testResult.incorrectAnswers.length} out of {testResult.totalQuestions} correct
                 </p>
               </div>
 
               {/* Stats */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-gray-900">{testResult.score}%</div>
-                  <div className="text-sm text-gray-600">Final Score</div>
+                <div className="text-center p-4 bg-background rounded-lg">
+                  <div className="text-2xl font-bold text-foreground">{testResult.score}%</div>
+                  <div className="text-sm text-muted-foreground">Final Score</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-gray-900">{formatTime(testResult.timeSpent)}</div>
-                  <div className="text-sm text-gray-600">Time Spent</div>
+                <div className="text-center p-4 bg-background rounded-lg">
+                  <div className="text-2xl font-bold text-foreground">{formatTime(testResult.timeSpent)}</div>
+                  <div className="text-sm text-muted-foreground">Time Spent</div>
                 </div>
-                <div className="text-center p-4 bg-gray-50 rounded-lg">
-                  <div className="text-2xl font-bold text-gray-900">{testResult.incorrectAnswers.length}</div>
-                  <div className="text-sm text-gray-600">Incorrect Answers</div>
+                <div className="text-center p-4 bg-background rounded-lg">
+                  <div className="text-2xl font-bold text-foreground">{testResult.incorrectAnswers.length}</div>
+                  <div className="text-sm text-muted-foreground">Incorrect Answers</div>
                 </div>
               </div>
 
@@ -469,12 +469,12 @@ export default function DrivingLicensePractice() {
                                 <p className="font-medium">{question.question}</p>
                                 <div className="mt-2 space-y-1">
                                   <p className="text-sm">
-                                    <span className="text-red-600">Your answer:</span> {question.options[userAnswer]}
+                                    <span className="text-destructive">Your answer:</span> {question.options[userAnswer]}
                                   </p>
                                   <p className="text-sm">
-                                    <span className="text-green-600">Correct answer:</span> {question.options[question.correctAnswer]}
+                                    <span className="text-primary">Correct answer:</span> {question.options[question.correctAnswer]}
                                   </p>
-                                  <p className="text-sm text-gray-600 mt-2">{question.explanation}</p>
+                                  <p className="text-sm text-muted-foreground mt-2">{question.explanation}</p>
                                 </div>
                               </div>
                             </div>
@@ -507,9 +507,9 @@ export default function DrivingLicensePractice() {
   const selectedAnswer = selectedAnswers[currentQuestion];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
@@ -517,8 +517,8 @@ export default function DrivingLicensePractice() {
                 <ArrowLeft className="w-5 h-5" />
               </Button>
               <div className="flex items-center space-x-2">
-                <Car className="w-6 h-6 text-blue-600" />
-                <h1 className="text-xl font-semibold text-gray-900">
+                <Car className="w-6 h-6 text-primary" />
+                <h1 className="text-xl font-semibold text-foreground">
                   {testMode === 'practice' ? 'Practice Mode' : 'Exam Mode'}
                 </h1>
               </div>
@@ -526,13 +526,13 @@ export default function DrivingLicensePractice() {
             <div className="flex items-center space-x-4">
               {testMode === 'exam' && (
                 <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4 text-gray-600" />
-                  <span className={`font-mono ${timeLeft < 300 ? 'text-red-600' : 'text-gray-600'}`}>
+                  <Clock className="w-4 h-4 text-muted-foreground" />
+                  <span className={`font-mono ${timeLeft < 300 ? 'text-destructive' : 'text-muted-foreground'}`}>
                     {formatTime(timeLeft)}
                   </span>
                 </div>
               )}
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted-foreground">
                 Question {currentQuestion + 1} of {mockQuestions.length}
               </div>
             </div>
@@ -544,7 +544,7 @@ export default function DrivingLicensePractice() {
         <div className="space-y-6">
           {/* Progress Bar */}
           <div className="space-y-2">
-            <div className="flex justify-between text-sm text-gray-600">
+            <div className="flex justify-between text-sm text-muted-foreground">
               <span>Progress</span>
               <span>{Math.round(progress)}%</span>
             </div>
@@ -556,7 +556,7 @@ export default function DrivingLicensePractice() {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <Badge variant="secondary">{question.category}</Badge>
-                <span className="text-sm text-gray-500">Question {currentQuestion + 1}</span>
+                <span className="text-sm text-muted-foreground">Question {currentQuestion + 1}</span>
               </div>
               <CardTitle className="text-xl leading-relaxed">{question.question}</CardTitle>
             </CardHeader>
@@ -572,16 +572,16 @@ export default function DrivingLicensePractice() {
                   
                   if (showResult) {
                     if (isCorrect) {
-                      buttonClass += "border-green-500 bg-green-50 text-green-800";
+                      buttonClass += "border-green-500 bg-background text-green-800";
                     } else if (isSelected && !isCorrect) {
                       buttonClass += "border-red-500 bg-red-50 text-red-800";
                     } else {
-                      buttonClass += "border-gray-200 bg-gray-50 text-gray-600";
+                      buttonClass += "border-border bg-background text-muted-foreground";
                     }
                   } else if (isSelected) {
-                    buttonClass += "border-blue-500 bg-blue-50 text-blue-800";
+                    buttonClass += "border-blue-500 bg-background text-blue-800";
                   } else {
-                    buttonClass += "border-gray-200 hover:border-blue-300 hover:bg-blue-50";
+                    buttonClass += "border-border hover:border-blue-300 hover:bg-background";
                   }
 
                   return (
@@ -597,10 +597,10 @@ export default function DrivingLicensePractice() {
                         </div>
                         <span>{option}</span>
                         {showResult && isCorrect && (
-                          <CheckCircle className="w-5 h-5 text-green-600 ml-auto" />
+                          <CheckCircle className="w-5 h-5 text-primary ml-auto" />
                         )}
                         {showResult && isSelected && !isCorrect && (
-                          <XCircle className="w-5 h-5 text-red-600 ml-auto" />
+                          <XCircle className="w-5 h-5 text-destructive ml-auto" />
                         )}
                       </div>
                     </button>
@@ -610,7 +610,7 @@ export default function DrivingLicensePractice() {
 
               {/* Explanation */}
               {showExplanation && testMode === 'practice' && (
-                <Alert className="border-blue-200 bg-blue-50">
+                <Alert className="border-blue-200 bg-background">
                   <AlertDescription className="text-blue-800">
                     <strong>Explanation:</strong> {question.explanation}
                   </AlertDescription>

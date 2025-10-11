@@ -377,35 +377,35 @@ This guide is for informational purposes only. Always check official embassy/con
       case 'easy': return 'bg-green-100 text-green-800';
       case 'moderate': return 'bg-yellow-100 text-yellow-800';
       case 'difficult': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-accent text-foreground';
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
-        return <CheckCircle className="w-5 h-5 text-green-600" />;
+        return <CheckCircle className="w-5 h-5 text-primary" />;
       case 'in_progress':
-        return <Clock className="w-5 h-5 text-blue-600" />;
+        return <Clock className="w-5 h-5 text-primary" />;
       default:
-        return <div className="w-5 h-5 border-2 border-gray-300 rounded-full" />;
+        return <div className="w-5 h-5 border-2 border-border rounded-full" />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
       
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <FileText className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Visa Processing Steps</h1>
+              <FileText className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Visa Processing Steps</h1>
             </div>
           </div>
         </div>
@@ -488,23 +488,23 @@ This guide is for informational purposes only. Always check official embassy/con
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div className="text-center p-4 bg-blue-50 rounded-lg">
-                      <div className="text-2xl font-bold text-blue-600">{currentProcess.totalTime}</div>
-                      <div className="text-sm text-gray-600">Processing Time</div>
+                    <div className="text-center p-4 bg-background rounded-lg">
+                      <div className="text-2xl font-bold text-primary">{currentProcess.totalTime}</div>
+                      <div className="text-sm text-muted-foreground">Processing Time</div>
                     </div>
-                    <div className="text-center p-4 bg-green-50 rounded-lg">
-                      <div className="text-2xl font-bold text-green-600">{currentProcess.cost}</div>
-                      <div className="text-sm text-gray-600">Total Cost</div>
+                    <div className="text-center p-4 bg-background rounded-lg">
+                      <div className="text-2xl font-bold text-primary">{currentProcess.cost}</div>
+                      <div className="text-sm text-muted-foreground">Total Cost</div>
                     </div>
-                    <div className="text-center p-4 bg-purple-50 rounded-lg">
+                    <div className="text-center p-4 bg-background rounded-lg">
                       <Badge className={getDifficultyColor(currentProcess.difficulty)}>
                         {currentProcess.difficulty}
                       </Badge>
-                      <div className="text-sm text-gray-600 mt-2">Difficulty</div>
+                      <div className="text-sm text-muted-foreground mt-2">Difficulty</div>
                     </div>
-                    <div className="text-center p-4 bg-orange-50 rounded-lg">
-                      <div className="text-2xl font-bold text-orange-600">{getTotalSteps()}</div>
-                      <div className="text-sm text-gray-600">Total Steps</div>
+                    <div className="text-center p-4 bg-background rounded-lg">
+                      <div className="text-2xl font-bold text-primary">{getTotalSteps()}</div>
+                      <div className="text-sm text-muted-foreground">Total Steps</div>
                     </div>
                   </div>
 
@@ -575,7 +575,7 @@ This guide is for informational purposes only. Always check official embassy/con
                           <ul className="space-y-1">
                             {step.requirements.map((req, idx) => (
                               <li key={idx} className="flex items-start space-x-2">
-                                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2"></div>
+                                <div className="w-1.5 h-1.5 bg-background0 rounded-full mt-2"></div>
                                 <span className="text-sm">{req}</span>
                               </li>
                             ))}
@@ -587,8 +587,8 @@ This guide is for informational purposes only. Always check official embassy/con
                           <ul className="space-y-1">
                             {step.tips.map((tip, idx) => (
                               <li key={idx} className="flex items-start space-x-2">
-                                <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2"></div>
-                                <span className="text-sm text-gray-600">{tip}</span>
+                                <div className="w-1.5 h-1.5 bg-background0 rounded-full mt-2"></div>
+                                <span className="text-sm text-muted-foreground">{tip}</span>
                               </li>
                             ))}
                           </ul>
@@ -612,8 +612,8 @@ This guide is for informational purposes only. Always check official embassy/con
           {/* No Process Selected */}
           {!currentProcess && (
             <Card className="shadow-lg border-0">
-              <CardContent className="py-12 text-center text-gray-500">
-                <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+              <CardContent className="py-12 text-center text-muted-foreground">
+                <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                 <p>Select a country and visa type to see the step-by-step process</p>
                 <p className="text-sm">Get detailed guidance for your visa application</p>
               </CardContent>

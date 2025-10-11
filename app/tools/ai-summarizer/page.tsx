@@ -110,18 +110,18 @@ Key findings indicate significant opportunities for improvement. Immediate actio
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <Brain className="w-6 h-6 text-purple-600" />
-              <h1 className="text-xl font-semibold text-gray-900">AI Summarizer</h1>
+              <Brain className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">AI Summarizer</h1>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ Key findings indicate significant opportunities for improvement. Immediate actio
           <Card className="shadow-lg border-0">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <FileText className="w-5 h-5 text-purple-600" />
+                <FileText className="w-5 h-5 text-primary" />
                 <span>Input Text</span>
               </CardTitle>
               <CardDescription>
@@ -193,7 +193,7 @@ Key findings indicate significant opportunities for improvement. Immediate actio
               <div className="flex space-x-3">
                 <Button 
                   onClick={generateSummary} 
-                  className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                  className="flex-1 bg-primary hover:bg-primary/90"
                   disabled={isLoading || !inputText.trim()}
                 >
                   {isLoading ? (
@@ -226,7 +226,7 @@ Key findings indicate significant opportunities for improvement. Immediate actio
           <Card className="shadow-lg border-0">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <Zap className="w-5 h-5 text-purple-600" />
+                <Zap className="w-5 h-5 text-primary" />
                 <span>AI Summary</span>
               </CardTitle>
               <CardDescription>
@@ -238,7 +238,7 @@ Key findings indicate significant opportunities for improvement. Immediate actio
                 <div className="flex items-center justify-center py-12">
                   <div className="text-center space-y-4">
                     <div className="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-                    <p className="text-gray-600">AI is analyzing and summarizing your text...</p>
+                    <p className="text-muted-foreground">AI is analyzing and summarizing your text...</p>
                   </div>
                 </div>
               ) : summary ? (
@@ -257,32 +257,32 @@ Key findings indicate significant opportunities for improvement. Immediate actio
                         </Button>
                       </div>
                     </div>
-                    <div className="p-4 bg-gray-50 rounded-lg border min-h-[300px]">
-                      <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">
+                    <div className="p-4 bg-background rounded-lg border min-h-[300px]">
+                      <div className="whitespace-pre-wrap text-foreground leading-relaxed">
                         {summary}
                       </div>
                     </div>
                   </div>
 
                   {/* Summary Stats */}
-                  <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+                  <div className="grid grid-cols-2 gap-4 pt-4 border-t border-border">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600">
+                      <div className="text-2xl font-bold text-primary">
                         {Math.round((wordCount - summary.split(' ').length) / wordCount * 100)}%
                       </div>
-                      <div className="text-sm text-gray-600">Reduction</div>
+                      <div className="text-sm text-muted-foreground">Reduction</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600">
+                      <div className="text-2xl font-bold text-primary">
                         {summary.split(' ').length}
                       </div>
-                      <div className="text-sm text-gray-600">Words</div>
+                      <div className="text-sm text-muted-foreground">Words</div>
                     </div>
                   </div>
                 </>
               ) : (
-                <div className="py-12 text-center text-gray-500">
-                  <Brain className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                <div className="py-12 text-center text-muted-foreground">
+                  <Brain className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                   <p>Enter text and click "Generate Summary" to get started</p>
                 </div>
               )}
@@ -303,24 +303,24 @@ Key findings indicate significant opportunities for improvement. Immediate actio
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center p-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Brain className="w-6 h-6 text-purple-600" />
+                    <Brain className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">AI-Powered</h3>
-                  <p className="text-sm text-gray-600">Advanced AI algorithms understand context and extract key information</p>
+                  <p className="text-sm text-muted-foreground">Advanced AI algorithms understand context and extract key information</p>
                 </div>
                 <div className="text-center p-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <FileText className="w-6 h-6 text-purple-600" />
+                    <FileText className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Multiple Formats</h3>
-                  <p className="text-sm text-gray-600">Choose from bullet points, paragraphs, or executive summaries</p>
+                  <p className="text-sm text-muted-foreground">Choose from bullet points, paragraphs, or executive summaries</p>
                 </div>
                 <div className="text-center p-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Zap className="w-6 h-6 text-purple-600" />
+                    <Zap className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Fast Processing</h3>
-                  <p className="text-sm text-gray-600">Get comprehensive summaries in seconds, not minutes</p>
+                  <p className="text-sm text-muted-foreground">Get comprehensive summaries in seconds, not minutes</p>
                 </div>
               </div>
             </CardContent>

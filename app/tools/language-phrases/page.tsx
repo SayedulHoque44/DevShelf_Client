@@ -362,7 +362,7 @@ export default function LanguagePhrases() {
       case 'basic': return 'bg-green-100 text-green-800';
       case 'intermediate': return 'bg-yellow-100 text-yellow-800';
       case 'advanced': return 'bg-red-100 text-red-800';
-      default: return 'bg-gray-100 text-gray-800';
+      default: return 'bg-accent text-foreground';
     }
   };
 
@@ -375,9 +375,9 @@ export default function LanguagePhrases() {
           <div className="space-y-4">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900">{phrase.english}</h3>
-                <p className="text-xl text-blue-600 font-medium mt-1">{phrase.translation}</p>
-                <p className="text-sm text-gray-500 mt-1">/{phrase.pronunciation}/</p>
+                <h3 className="text-lg font-semibold text-foreground">{phrase.english}</h3>
+                <p className="text-xl text-primary font-medium mt-1">{phrase.translation}</p>
+                <p className="text-sm text-muted-foreground mt-1">/{phrase.pronunciation}/</p>
               </div>
               <div className="flex items-center space-x-2">
                 <Badge className={getDifficultyColor(phrase.difficulty)}>
@@ -387,7 +387,7 @@ export default function LanguagePhrases() {
                   variant="ghost"
                   size="sm"
                   onClick={() => toggleBookmark(phrase.id)}
-                  className={isBookmarked ? 'text-yellow-500' : 'text-gray-400'}
+                  className={isBookmarked ? 'text-yellow-500' : 'text-muted-foreground'}
                 >
                   <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
                 </Button>
@@ -424,18 +424,18 @@ export default function LanguagePhrases() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <MessageCircle className="w-6 h-6 text-green-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Travel Phrases</h1>
+              <MessageCircle className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Travel Phrases</h1>
             </div>
           </div>
         </div>
@@ -447,7 +447,7 @@ export default function LanguagePhrases() {
           <Card className="shadow-lg border-0">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <Globe className="w-5 h-5 text-green-600" />
+                <Globe className="w-5 h-5 text-primary" />
                 <span>Essential Travel Phrases</span>
               </CardTitle>
               <CardDescription>
@@ -494,7 +494,7 @@ export default function LanguagePhrases() {
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Search</label>
                   <div className="relative">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                     <Input
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -527,8 +527,8 @@ export default function LanguagePhrases() {
                 </div>
               ) : (
                 <Card className="shadow-lg border-0">
-                  <CardContent className="py-12 text-center text-gray-500">
-                    <MessageCircle className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <CardContent className="py-12 text-center text-muted-foreground">
+                    <MessageCircle className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                     <p>No phrases found</p>
                     <p className="text-sm">Try adjusting your search or category filter</p>
                   </CardContent>
@@ -546,8 +546,8 @@ export default function LanguagePhrases() {
                 </div>
               ) : (
                 <Card className="shadow-lg border-0">
-                  <CardContent className="py-12 text-center text-gray-500">
-                    <Bookmark className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <CardContent className="py-12 text-center text-muted-foreground">
+                    <Bookmark className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                     <p>No bookmarked phrases</p>
                     <p className="text-sm">Bookmark phrases to save them for quick access</p>
                   </CardContent>
@@ -565,31 +565,31 @@ export default function LanguagePhrases() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Volume2 className="w-6 h-6 text-green-600" />
+                    <Volume2 className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Practice Pronunciation</h3>
-                  <p className="text-sm text-gray-600">Use the audio feature to hear correct pronunciation</p>
+                  <p className="text-sm text-muted-foreground">Use the audio feature to hear correct pronunciation</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Star className="w-6 h-6 text-blue-600" />
+                    <Star className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Start with Basics</h3>
-                  <p className="text-sm text-gray-600">Master basic phrases before moving to advanced ones</p>
+                  <p className="text-sm text-muted-foreground">Master basic phrases before moving to advanced ones</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Bookmark className="w-6 h-6 text-purple-600" />
+                    <Bookmark className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Bookmark Favorites</h3>
-                  <p className="text-sm text-gray-600">Save important phrases for quick reference</p>
+                  <p className="text-sm text-muted-foreground">Save important phrases for quick reference</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <MessageCircle className="w-6 h-6 text-orange-600" />
+                    <MessageCircle className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Practice Daily</h3>
-                  <p className="text-sm text-gray-600">Regular practice helps with retention and fluency</p>
+                  <p className="text-sm text-muted-foreground">Regular practice helps with retention and fluency</p>
                 </div>
               </div>
             </CardContent>

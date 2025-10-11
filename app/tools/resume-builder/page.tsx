@@ -155,18 +155,18 @@ export default function ResumeBuilder() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <User className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Resume Builder</h1>
+              <User className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Resume Builder</h1>
             </div>
             <div className="flex items-center space-x-2">
               <Button variant="outline" size="sm">
@@ -189,7 +189,7 @@ export default function ResumeBuilder() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <FileText className="w-5 h-5 text-blue-600" />
+                  <FileText className="w-5 h-5 text-primary" />
                   <span>Build Your Resume</span>
                 </CardTitle>
                 <CardDescription>
@@ -469,15 +469,15 @@ export default function ResumeBuilder() {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="bg-white p-6 rounded-lg border shadow-sm min-h-[600px] text-sm">
+                <div className="bg-card p-6 rounded-lg border shadow-sm min-h-[600px] text-sm">
                   {/* Resume Preview Content */}
                   <div className="space-y-4">
                     {/* Header */}
                     <div className="text-center border-b pb-4">
-                      <h1 className="text-2xl font-bold text-gray-900">
+                      <h1 className="text-2xl font-bold text-foreground">
                         {resumeData.personalInfo.fullName || 'Your Name'}
                       </h1>
-                      <div className="text-gray-600 mt-2 space-y-1">
+                      <div className="text-muted-foreground mt-2 space-y-1">
                         {resumeData.personalInfo.email && <div>{resumeData.personalInfo.email}</div>}
                         {resumeData.personalInfo.phone && <div>{resumeData.personalInfo.phone}</div>}
                         {resumeData.personalInfo.location && <div>{resumeData.personalInfo.location}</div>}
@@ -487,29 +487,29 @@ export default function ResumeBuilder() {
                     {/* Summary */}
                     {resumeData.summary && (
                       <div>
-                        <h2 className="text-lg font-semibold text-gray-900 mb-2">Professional Summary</h2>
-                        <p className="text-gray-700 leading-relaxed">{resumeData.summary}</p>
+                        <h2 className="text-lg font-semibold text-foreground mb-2">Professional Summary</h2>
+                        <p className="text-foreground leading-relaxed">{resumeData.summary}</p>
                       </div>
                     )}
 
                     {/* Experience */}
                     {resumeData.experience.length > 0 && (
                       <div>
-                        <h2 className="text-lg font-semibold text-gray-900 mb-2">Work Experience</h2>
+                        <h2 className="text-lg font-semibold text-foreground mb-2">Work Experience</h2>
                         <div className="space-y-3">
                           {resumeData.experience.map((exp) => (
                             <div key={exp.id}>
                               <div className="flex justify-between items-start">
                                 <div>
                                   <h3 className="font-medium">{exp.position || 'Position'}</h3>
-                                  <div className="text-gray-600">{exp.company || 'Company'}</div>
+                                  <div className="text-muted-foreground">{exp.company || 'Company'}</div>
                                 </div>
-                                <div className="text-gray-500 text-sm">
+                                <div className="text-muted-foreground text-sm">
                                   {exp.startDate} - {exp.current ? 'Present' : exp.endDate}
                                 </div>
                               </div>
                               {exp.description && (
-                                <p className="text-gray-700 mt-1 text-sm">{exp.description}</p>
+                                <p className="text-foreground mt-1 text-sm">{exp.description}</p>
                               )}
                             </div>
                           ))}
@@ -520,15 +520,15 @@ export default function ResumeBuilder() {
                     {/* Education */}
                     {resumeData.education.length > 0 && (
                       <div>
-                        <h2 className="text-lg font-semibold text-gray-900 mb-2">Education</h2>
+                        <h2 className="text-lg font-semibold text-foreground mb-2">Education</h2>
                         <div className="space-y-2">
                           {resumeData.education.map((edu) => (
                             <div key={edu.id} className="flex justify-between items-start">
                               <div>
                                 <h3 className="font-medium">{edu.degree || 'Degree'}</h3>
-                                <div className="text-gray-600">{edu.institution || 'Institution'}</div>
+                                <div className="text-muted-foreground">{edu.institution || 'Institution'}</div>
                               </div>
-                              <div className="text-gray-500 text-sm">
+                              <div className="text-muted-foreground text-sm">
                                 {edu.year} {edu.grade && `• ${edu.grade}`}
                               </div>
                             </div>
@@ -540,12 +540,12 @@ export default function ResumeBuilder() {
                     {/* Skills */}
                     {resumeData.skills.length > 0 && (
                       <div>
-                        <h2 className="text-lg font-semibold text-gray-900 mb-2">Skills</h2>
+                        <h2 className="text-lg font-semibold text-foreground mb-2">Skills</h2>
                         <div className="flex flex-wrap gap-2">
                           {resumeData.skills.map((skill) => (
                             <span
                               key={skill}
-                              className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm"
+                              className="bg-accent text-foreground px-2 py-1 rounded text-sm"
                             >
                               {skill}
                             </span>

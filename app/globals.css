@@ -95,30 +95,30 @@
     --radius: 0.5rem;
   }
   .dark {
-    --background: var(--rich-beige-950);
+    --background: 0 0% 3.9%; /* Pure dark black background */
     --foreground: 0 0% 98%; /* Pure white for dark mode text */
-    --card: var(--rich-beige-900);
+    --card: 0 0% 7%; /* Slightly lighter black for cards */
     --card-foreground: 0 0% 98%; /* Pure white for dark mode card text */
-    --popover: var(--rich-beige-900);
+    --popover: 0 0% 7%; /* Slightly lighter black for popovers */
     --popover-foreground: 0 0% 98%; /* Pure white for dark mode popover text */
-    --primary: var(--ocean-400); /* Lighter ocean for dark mode buttons */
+    --primary: var(--ocean-400); /* Ocean blue for dark mode buttons */
     --primary-foreground: 0 0% 9%; /* Black text on ocean buttons */
-    --secondary: var(--rich-beige-800);
+    --secondary: 0 0% 14.9%; /* Dark gray for secondary elements */
     --secondary-foreground: 0 0% 98%; /* White text on secondary in dark mode */
-    --muted: var(--rich-beige-800);
-    --muted-foreground: 0 0% 70%; /* Professional light gray for muted text */
-    --accent: var(--ocean-800);
+    --muted: 0 0% 14.9%; /* Dark gray for muted elements */
+    --muted-foreground: 0 0% 63.9%; /* Light gray for muted text */
+    --accent: 0 0% 14.9%; /* Dark gray for accent elements */
     --accent-foreground: 0 0% 98%; /* White text on accent in dark mode */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: var(--rich-beige-700);
-    --input: var(--rich-beige-800);
-    --ring: var(--ocean-600);
+    --border: 0 0% 14.9%; /* Dark gray borders */
+    --input: 0 0% 14.9%; /* Dark gray input backgrounds */
+    --ring: var(--ocean-400); /* Ocean blue for focus rings */
     --chart-1: var(--ocean-400);
-    --chart-2: var(--warm-beige-400);
-    --chart-3: var(--rich-beige-400);
-    --chart-4: var(--ocean-600);
-    --chart-5: var(--warm-beige-600);
+    --chart-2: var(--ocean-500);
+    --chart-3: var(--ocean-600);
+    --chart-4: var(--ocean-300);
+    --chart-5: var(--ocean-700);
   }
 }
 
@@ -127,6 +127,14 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
+  }
+
+  /* Smooth transitions for theme switching */
+  *,
+  *::before,
+  *::after {
+    transition: background-color 0.3s ease, border-color 0.3s ease,
+      color 0.3s ease;
   }
 }

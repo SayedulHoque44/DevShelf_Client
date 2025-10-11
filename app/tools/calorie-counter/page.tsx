@@ -317,21 +317,21 @@ export default function CalorieCounter() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link
               href="/"
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <Apple className="w-6 h-6 text-green-600" />
-              <h1 className="text-xl font-semibold text-gray-900">
+              <Apple className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">
                 Calorie Counter
               </h1>
             </div>
@@ -354,7 +354,7 @@ export default function CalorieCounter() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Calendar className="w-5 h-5 text-green-600" />
+                  <Calendar className="w-5 h-5 text-primary" />
                   <span>Today's Summary</span>
                 </CardTitle>
                 <CardDescription>
@@ -376,13 +376,13 @@ export default function CalorieCounter() {
                     </span>
                   </div>
                   <Progress value={progressPercentage} className="w-full h-3" />
-                  <div className="flex justify-between text-sm text-gray-600">
+                  <div className="flex justify-between text-sm text-muted-foreground">
                     <span>Consumed: {Math.round(totalNutrition.calories)}</span>
                     <span
                       className={
                         remainingCalories >= 0
-                          ? "text-green-600"
-                          : "text-red-600"
+                          ? "text-primary"
+                          : "text-destructive"
                       }
                     >
                       {remainingCalories >= 0 ? "Remaining" : "Over"}:{" "}
@@ -393,23 +393,23 @@ export default function CalorieCounter() {
 
                 {/* Macronutrients */}
                 <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-blue-50 rounded-lg">
-                    <div className="text-2xl font-bold text-blue-600">
+                  <div className="text-center p-4 bg-background rounded-lg">
+                    <div className="text-2xl font-bold text-primary">
                       {Math.round(totalNutrition.protein)}g
                     </div>
-                    <div className="text-sm text-gray-600">Protein</div>
+                    <div className="text-sm text-muted-foreground">Protein</div>
                   </div>
-                  <div className="text-center p-4 bg-orange-50 rounded-lg">
-                    <div className="text-2xl font-bold text-orange-600">
+                  <div className="text-center p-4 bg-background rounded-lg">
+                    <div className="text-2xl font-bold text-primary">
                       {Math.round(totalNutrition.carbs)}g
                     </div>
-                    <div className="text-sm text-gray-600">Carbs</div>
+                    <div className="text-sm text-muted-foreground">Carbs</div>
                   </div>
-                  <div className="text-center p-4 bg-purple-50 rounded-lg">
-                    <div className="text-2xl font-bold text-purple-600">
+                  <div className="text-center p-4 bg-background rounded-lg">
+                    <div className="text-2xl font-bold text-primary">
                       {Math.round(totalNutrition.fat)}g
                     </div>
-                    <div className="text-sm text-gray-600">Fat</div>
+                    <div className="text-sm text-muted-foreground">Fat</div>
                   </div>
                 </div>
               </CardContent>
@@ -419,7 +419,7 @@ export default function CalorieCounter() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Plus className="w-5 h-5 text-green-600" />
+                  <Plus className="w-5 h-5 text-primary" />
                   <span>Add Food</span>
                 </CardTitle>
               </CardHeader>
@@ -428,7 +428,7 @@ export default function CalorieCounter() {
                 <div className="space-y-2">
                   <Label>Search Food</Label>
                   <div className="relative">
-                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
                     <Input
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
@@ -447,14 +447,14 @@ export default function CalorieCounter() {
                         onClick={() => setSelectedFood(food)}
                         className={`w-full p-3 text-left border rounded-lg transition-colors ${
                           selectedFood?.id === food.id
-                            ? "border-green-500 bg-green-50"
-                            : "border-gray-200 hover:border-green-300 hover:bg-green-50"
+                            ? "border-green-500 bg-background"
+                            : "border-border hover:border-green-300 hover:bg-background"
                         }`}
                       >
                         <div className="flex justify-between items-start">
                           <div>
                             <div className="font-medium">{food.name}</div>
-                            <div className="text-sm text-gray-500">
+                            <div className="text-sm text-muted-foreground">
                               {food.serving}
                             </div>
                           </div>
@@ -462,7 +462,7 @@ export default function CalorieCounter() {
                             <div className="font-medium">
                               {food.calories} cal
                             </div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-muted-foreground">
                               P: {food.protein}g C: {food.carbs}g F: {food.fat}g
                             </div>
                           </div>
@@ -474,10 +474,10 @@ export default function CalorieCounter() {
 
                 {/* Selected Food Details */}
                 {selectedFood && (
-                  <div className="p-4 bg-gray-50 rounded-lg space-y-4">
+                  <div className="p-4 bg-background rounded-lg space-y-4">
                     <div>
                       <h4 className="font-semibold">{selectedFood.name}</h4>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-muted-foreground">
                         {selectedFood.serving}
                       </p>
                     </div>
@@ -517,7 +517,7 @@ export default function CalorieCounter() {
                         <div className="font-medium">
                           {Math.round(selectedFood.calories * quantity)}
                         </div>
-                        <div className="text-gray-500">Calories</div>
+                        <div className="text-muted-foreground">Calories</div>
                       </div>
                       <div>
                         <div className="font-medium">
@@ -525,19 +525,19 @@ export default function CalorieCounter() {
                             10}
                           g
                         </div>
-                        <div className="text-gray-500">Protein</div>
+                        <div className="text-muted-foreground">Protein</div>
                       </div>
                       <div>
                         <div className="font-medium">
                           {Math.round(selectedFood.carbs * quantity * 10) / 10}g
                         </div>
-                        <div className="text-gray-500">Carbs</div>
+                        <div className="text-muted-foreground">Carbs</div>
                       </div>
                       <div>
                         <div className="font-medium">
                           {Math.round(selectedFood.fat * quantity * 10) / 10}g
                         </div>
-                        <div className="text-gray-500">Fat</div>
+                        <div className="text-muted-foreground">Fat</div>
                       </div>
                     </div>
 
@@ -572,13 +572,13 @@ export default function CalorieCounter() {
                         {mealEntries.map((entry) => (
                           <div
                             key={entry.id}
-                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                            className="flex items-center justify-between p-3 bg-background rounded-lg"
                           >
                             <div className="flex-1">
                               <div className="font-medium">
                                 {entry.food.name}
                               </div>
-                              <div className="text-sm text-gray-600">
+                              <div className="text-sm text-muted-foreground">
                                 {entry.quantity} × {entry.food.serving}
                               </div>
                             </div>
@@ -589,7 +589,7 @@ export default function CalorieCounter() {
                                 )}{" "}
                                 cal
                               </div>
-                              <div className="text-xs text-gray-500">
+                              <div className="text-xs text-muted-foreground">
                                 P:{" "}
                                 {Math.round(
                                   entry.food.protein * entry.quantity * 10
@@ -616,7 +616,7 @@ export default function CalorieCounter() {
                         ))}
                       </div>
                     ) : (
-                      <p className="text-gray-500 text-center py-4">
+                      <p className="text-muted-foreground text-center py-4">
                         No foods added to {meal}
                       </p>
                     )}
@@ -751,16 +751,16 @@ export default function CalorieCounter() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Target className="w-5 h-5 text-green-600" />
+                  <Target className="w-5 h-5 text-primary" />
                   <span>Daily Goals</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">
+                  <div className="text-2xl font-bold text-primary">
                     {calorieGoal}
                   </div>
-                  <div className="text-sm text-gray-600">Calorie Goal</div>
+                  <div className="text-sm text-muted-foreground">Calorie Goal</div>
                 </div>
 
                 <div className="space-y-3 text-sm">
@@ -791,19 +791,19 @@ export default function CalorieCounter() {
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Aim for 0.8-1g protein per kg body weight</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Include fruits and vegetables in every meal</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Stay hydrated with 8-10 glasses of water daily</span>
                 </div>
                 <div className="flex items-start space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                  <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                   <span>Choose whole grains over refined carbs</span>
                 </div>
               </CardContent>

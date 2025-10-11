@@ -188,18 +188,18 @@ export default function LanguageTranslator() {
   const targetLanguage = languages.find(lang => lang.code === targetLang);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <Languages className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Language Translator</h1>
+              <Languages className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Language Translator</h1>
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@ export default function LanguageTranslator() {
           <Card className="shadow-lg border-0">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <Globe className="w-5 h-5 text-blue-600" />
+                <Globe className="w-5 h-5 text-primary" />
                 <span>Language Selection</span>
               </CardTitle>
               <CardDescription>
@@ -232,7 +232,7 @@ export default function LanguageTranslator() {
                           <div className="flex items-center space-x-2">
                             <span>{language.flag}</span>
                             <span>{language.name}</span>
-                            <span className="text-gray-500 text-sm">({language.nativeName})</span>
+                            <span className="text-muted-foreground text-sm">({language.nativeName})</span>
                           </div>
                         </SelectItem>
                       ))}
@@ -261,7 +261,7 @@ export default function LanguageTranslator() {
                           <div className="flex items-center space-x-2">
                             <span>{language.flag}</span>
                             <span>{language.name}</span>
-                            <span className="text-gray-500 text-sm">({language.nativeName})</span>
+                            <span className="text-muted-foreground text-sm">({language.nativeName})</span>
                           </div>
                         </SelectItem>
                       ))}
@@ -313,7 +313,7 @@ export default function LanguageTranslator() {
                 />
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-muted-foreground">
                     {sourceText.length} characters
                   </span>
                   <div className="flex space-x-2">
@@ -379,13 +379,13 @@ export default function LanguageTranslator() {
                   <div className="flex items-center justify-center min-h-[200px]">
                     <div className="text-center space-y-4">
                       <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-                      <p className="text-gray-600">Translating text...</p>
+                      <p className="text-muted-foreground">Translating text...</p>
                     </div>
                   </div>
                 ) : translatedText ? (
                   <div className="space-y-4">
-                    <div className="p-4 bg-gray-50 rounded-lg border min-h-[200px]">
-                      <p className="text-gray-800 leading-relaxed">{translatedText}</p>
+                    <div className="p-4 bg-background rounded-lg border min-h-[200px]">
+                      <p className="text-foreground leading-relaxed">{translatedText}</p>
                     </div>
                     
                     {detectedLanguage && (
@@ -398,9 +398,9 @@ export default function LanguageTranslator() {
                     )}
                   </div>
                 ) : (
-                  <div className="flex items-center justify-center min-h-[200px] text-gray-500">
+                  <div className="flex items-center justify-center min-h-[200px] text-muted-foreground">
                     <div className="text-center">
-                      <Languages className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                      <Languages className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                       <p>Translation will appear here</p>
                     </div>
                   </div>
@@ -433,7 +433,7 @@ export default function LanguageTranslator() {
                   <button
                     key={phrase}
                     onClick={() => setSourceText(phrase)}
-                    className="p-3 text-left border rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-colors text-sm"
+                    className="p-3 text-left border rounded-lg hover:bg-background hover:border-blue-300 transition-colors text-sm"
                   >
                     {phrase}
                   </button>
@@ -451,31 +451,31 @@ export default function LanguageTranslator() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Languages className="w-6 h-6 text-blue-600" />
+                    <Languages className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">20+ Languages</h3>
-                  <p className="text-sm text-gray-600">Support for major world languages</p>
+                  <p className="text-sm text-muted-foreground">Support for major world languages</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Volume2 className="w-6 h-6 text-purple-600" />
+                    <Volume2 className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Text-to-Speech</h3>
-                  <p className="text-sm text-gray-600">Hear pronunciation in any language</p>
+                  <p className="text-sm text-muted-foreground">Hear pronunciation in any language</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Copy className="w-6 h-6 text-green-600" />
+                    <Copy className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Easy Copy</h3>
-                  <p className="text-sm text-gray-600">One-click copy to clipboard</p>
+                  <p className="text-sm text-muted-foreground">One-click copy to clipboard</p>
                 </div>
                 <div className="text-center">
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Download className="w-6 h-6 text-orange-600" />
+                    <Download className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-semibold mb-2">Export Options</h3>
-                  <p className="text-sm text-gray-600">Download translations as text files</p>
+                  <p className="text-sm text-muted-foreground">Download translations as text files</p>
                 </div>
               </div>
             </CardContent>

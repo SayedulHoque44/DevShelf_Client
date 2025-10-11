@@ -44,7 +44,7 @@ export default function BMICalculator() {
     if (bmi < 16) {
       category = 'Severely Underweight';
       description = 'Seek medical attention for healthy weight gain guidance.';
-      color = 'text-red-600';
+      color = 'text-destructive';
     } else if (bmi < 18.5) {
       category = 'Underweight';
       description = 'Consider consulting with a healthcare provider about healthy weight gain.';
@@ -52,15 +52,15 @@ export default function BMICalculator() {
     } else if (bmi < 25) {
       category = 'Normal Weight';
       description = 'Great! You have a healthy weight for your height.';
-      color = 'text-green-600';
+      color = 'text-primary';
     } else if (bmi < 30) {
       category = 'Overweight';
       description = 'Consider lifestyle changes like diet and exercise for better health.';
-      color = 'text-orange-600';
+      color = 'text-primary';
     } else if (bmi < 35) {
       category = 'Obese Class I';
       description = 'Health risks increase. Consider consulting with a healthcare provider.';
-      color = 'text-red-600';
+      color = 'text-destructive';
     } else if (bmi < 40) {
       category = 'Obese Class II';
       description = 'Significant health risks. Medical consultation is recommended.';
@@ -86,18 +86,18 @@ export default function BMICalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <Calculator className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">BMI Calculator</h1>
+              <Calculator className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">BMI Calculator</h1>
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function BMICalculator() {
           <Card className="shadow-lg border-0">
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <Calculator className="w-5 h-5 text-blue-600" />
+                <Calculator className="w-5 h-5 text-primary" />
                 <span>Calculate Your BMI</span>
               </CardTitle>
               <CardDescription>
@@ -188,16 +188,16 @@ export default function BMICalculator() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <TrendingUp className="w-5 h-5 text-green-600" />
+                  <TrendingUp className="w-5 h-5 text-primary" />
                   <span>Your BMI Result</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="text-center">
-                  <div className="text-4xl font-bold text-gray-900 mb-2">
+                  <div className="text-4xl font-bold text-foreground mb-2">
                     {result.bmi}
                   </div>
-                  <Badge variant="secondary" className={`text-sm ${result.color} bg-gray-100`}>
+                  <Badge variant="secondary" className={`text-sm ${result.color} bg-accent`}>
                     {result.category}
                   </Badge>
                 </div>
@@ -211,13 +211,13 @@ export default function BMICalculator() {
 
                 {/* BMI Chart */}
                 <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-900">BMI Categories</h4>
+                  <h4 className="font-semibold text-foreground">BMI Categories</h4>
                   <div className="space-y-2 text-sm">
-                    <div className="flex justify-between items-center p-2 rounded bg-blue-50">
+                    <div className="flex justify-between items-center p-2 rounded bg-background">
                       <span>Underweight</span>
                       <span className="font-mono">{'<'} 18.5</span>
                     </div>
-                    <div className="flex justify-between items-center p-2 rounded bg-green-50">
+                    <div className="flex justify-between items-center p-2 rounded bg-background">
                       <span>Normal weight</span>
                       <span className="font-mono">18.5 - 24.9</span>
                     </div>
@@ -240,26 +240,26 @@ export default function BMICalculator() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Info className="w-5 h-5 text-blue-600" />
+                  <Info className="w-5 h-5 text-primary" />
                   <span>About BMI</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   Body Mass Index (BMI) is a widely used screening tool to categorize 
                   individuals based on their weight and height relationship.
                 </p>
                 
                 <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-900">BMI Categories:</h4>
+                  <h4 className="font-semibold text-foreground">BMI Categories:</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span>Underweight</span>
-                      <span className="font-mono text-blue-600">{'<'} 18.5</span>
+                      <span className="font-mono text-primary">{'<'} 18.5</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Normal weight</span>
-                      <span className="font-mono text-green-600">18.5 - 24.9</span>
+                      <span className="font-mono text-primary">18.5 - 24.9</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Overweight</span>
@@ -267,7 +267,7 @@ export default function BMICalculator() {
                     </div>
                     <div className="flex justify-between">
                       <span>Obese</span>
-                      <span className="font-mono text-red-600">≥ 30.0</span>
+                      <span className="font-mono text-destructive">≥ 30.0</span>
                     </div>
                   </div>
                 </div>

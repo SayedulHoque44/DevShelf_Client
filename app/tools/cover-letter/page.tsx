@@ -206,18 +206,18 @@ ${personalInfo.fullName}`
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <FileText className="w-6 h-6 text-indigo-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Cover Letter Generator</h1>
+              <FileText className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Cover Letter Generator</h1>
             </div>
           </div>
         </div>
@@ -231,7 +231,7 @@ ${personalInfo.fullName}`
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <User className="w-5 h-5 text-indigo-600" />
+                  <User className="w-5 h-5 text-primary" />
                   <span>Personal Information</span>
                 </CardTitle>
                 <CardDescription>
@@ -285,7 +285,7 @@ ${personalInfo.fullName}`
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Building className="w-5 h-5 text-indigo-600" />
+                  <Building className="w-5 h-5 text-primary" />
                   <span>Job Information</span>
                 </CardTitle>
                 <CardDescription>
@@ -338,7 +338,7 @@ ${personalInfo.fullName}`
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Briefcase className="w-5 h-5 text-indigo-600" />
+                  <Briefcase className="w-5 h-5 text-primary" />
                   <span>Experience & Skills</span>
                 </CardTitle>
                 <CardDescription>
@@ -437,7 +437,7 @@ ${personalInfo.fullName}`
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <FileText className="w-5 h-5 text-indigo-600" />
+                  <FileText className="w-5 h-5 text-primary" />
                   <span>Cover Letter Preview</span>
                 </CardTitle>
                 <CardDescription>
@@ -479,8 +479,8 @@ ${personalInfo.fullName}`
               <CardContent>
                 {generatedLetter ? (
                   <div className="space-y-4">
-                    <div className="bg-white p-6 rounded-lg border shadow-sm min-h-[500px]">
-                      <pre className="whitespace-pre-wrap text-sm text-gray-800 font-mono leading-relaxed">
+                    <div className="bg-card p-6 rounded-lg border shadow-sm min-h-[500px]">
+                      <pre className="whitespace-pre-wrap text-sm text-foreground font-mono leading-relaxed">
                         {generatedLetter}
                       </pre>
                     </div>
@@ -496,8 +496,8 @@ ${personalInfo.fullName}`
                     </div>
                   </div>
                 ) : (
-                  <div className="py-12 text-center text-gray-500">
-                    <FileText className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <div className="py-12 text-center text-muted-foreground">
+                    <FileText className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                     <p>Fill out the form to generate your cover letter</p>
                     <p className="text-sm">All required fields (*) must be completed</p>
                   </div>

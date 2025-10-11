@@ -366,10 +366,10 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
     FORMATTING:
     - <strong> for bold text (with class="font-semibold")
     - <em> for italic text (with class="italic")
-    - <blockquote> for quotes (with class="border-l-4 border-gray-300 pl-4 italic my-4")
-    - <a href="url"> for links (with class="text-blue-600 hover:text-blue-800 underline")
+    - <blockquote> for quotes (with class="border-l-4 border-border pl-4 italic my-4")
+    - <a href="url"> for links (with class="text-primary hover:text-blue-800 underline")
     - <img src="url" alt="description"> for images (with class="max-w-full h-auto rounded-lg my-4")
-    - <hr> for horizontal rules (with class="my-8 border-gray-300")
+    - <hr> for horizontal rules (with class="my-8 border-border")
     - <br> for line breaks where needed
     
     LAYOUT:
@@ -482,21 +482,21 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
   console.log(blogData);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link
               href="/"
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <PenTool className="w-6 h-6 text-green-600" />
-              <h1 className="text-xl font-semibold text-gray-900">
+              <PenTool className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">
                 AI Blog Writer
               </h1>
             </div>
@@ -511,7 +511,7 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Lightbulb className="w-5 h-5 text-green-600" />
+                  <Lightbulb className="w-5 h-5 text-primary" />
                   <span>Blog Configuration</span>
                 </CardTitle>
                 <CardDescription>
@@ -632,7 +632,7 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                       step={100}
                       className="w-full"
                     />
-                    <div className="flex justify-between text-xs text-gray-500">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>300 words</span>
                       <span>3000 words</span>
                     </div>
@@ -664,7 +664,7 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                             <span>{keyword}</span>
                             <button
                               onClick={() => removeKeyword(keyword)}
-                              className="text-green-600 hover:text-green-800"
+                              className="text-primary hover:text-green-800"
                             >
                               ×
                             </button>
@@ -725,7 +725,7 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                 <div className="flex space-x-3">
                   <Button
                     onClick={generateBlog}
-                    className="flex-1 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700"
+                    className="flex-1 bg-primary hover:bg-primary/90"
                     disabled={isGenerating || !isFormValid()}
                     size="lg"
                   >
@@ -748,7 +748,7 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                       <span>{Math.round(generationProgress)}%</span>
                     </div>
                     <Progress value={generationProgress} className="w-full" />
-                    <div className="text-xs text-gray-500 text-center">
+                    <div className="text-xs text-muted-foreground text-center">
                       AI is crafting engaging content tailored to your
                       specifications
                     </div>
@@ -775,7 +775,7 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="flex items-center space-x-2">
-                      <PenTool className="w-5 h-5 text-green-600" />
+                      <PenTool className="w-5 h-5 text-primary" />
                       <span>Blog Editor & Preview</span>
                     </CardTitle>
                     <div className="flex gap-2">
@@ -831,7 +831,7 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
               <Card className="shadow-lg border-0">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
-                    <PenTool className="w-5 h-5 text-green-600" />
+                    <PenTool className="w-5 h-5 text-primary" />
                     <span>Generated Blog Post</span>
                   </CardTitle>
                   <CardDescription>
@@ -845,18 +845,18 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                     <div className="flex items-center justify-center py-12">
                       <div className="text-center space-y-4">
                         <div className="w-8 h-8 border-4 border-green-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
-                        <p className="text-gray-600">
+                        <p className="text-muted-foreground">
                           AI is writing your blog post...
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-muted-foreground">
                           Creating engaging content tailored to your
                           specifications
                         </p>
                       </div>
                     </div>
                   ) : (
-                    <div className="py-12 text-center text-gray-500">
-                      <PenTool className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                    <div className="py-12 text-center text-muted-foreground">
+                      <PenTool className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                       <p>
                         Configure your blog and click &quot;Generate Blog
                         Post&quot; to get started
@@ -876,14 +876,14 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
               <Card className="shadow-lg border-0">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
-                    <TrendingUp className="w-5 h-5 text-green-600" />
+                    <TrendingUp className="w-5 h-5 text-primary" />
                     <span>Blog Statistics</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-green-600">
+                      <div className="text-2xl font-bold text-primary">
                         {
                           calculateBlogStats(
                             editedBlog || generatedBlog,
@@ -891,10 +891,10 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                           ).wordCount
                         }
                       </div>
-                      <div className="text-xs text-gray-600">Words</div>
+                      <div className="text-xs text-muted-foreground">Words</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-600">
+                      <div className="text-2xl font-bold text-primary">
                         {
                           calculateBlogStats(
                             editedBlog || generatedBlog,
@@ -902,10 +902,12 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                           ).readingTime
                         }
                       </div>
-                      <div className="text-xs text-gray-600">Min Read</div>
+                      <div className="text-xs text-muted-foreground">
+                        Min Read
+                      </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-purple-600">
+                      <div className="text-2xl font-bold text-primary">
                         {
                           calculateBlogStats(
                             editedBlog || generatedBlog,
@@ -913,10 +915,12 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                           ).readabilityScore
                         }
                       </div>
-                      <div className="text-xs text-gray-600">Readability</div>
+                      <div className="text-xs text-muted-foreground">
+                        Readability
+                      </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-orange-600">
+                      <div className="text-2xl font-bold text-primary">
                         {
                           calculateBlogStats(
                             editedBlog || generatedBlog,
@@ -924,7 +928,9 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                           ).seoScore
                         }
                       </div>
-                      <div className="text-xs text-gray-600">SEO Score</div>
+                      <div className="text-xs text-muted-foreground">
+                        SEO Score
+                      </div>
                     </div>
                   </div>
                   <div className="mt-4 pt-4 border-t">
@@ -941,7 +947,7 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                       </span>
                     </div>
                     <div className="mt-2">
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-accent rounded-full h-2">
                         <div
                           className="bg-green-600 h-2 rounded-full"
                           style={{
@@ -970,76 +976,76 @@ CRITICAL REQUIREMENT: The blog post must be EXACTLY ${targetWords} words. Do not
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Brain className="w-4 h-4 text-green-600" />
+                      <Brain className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-sm">
                         AI-Powered Writing
                       </h4>
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-muted-foreground">
                         Advanced AI creates engaging, original content
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <PenTool className="w-4 h-4 text-blue-600" />
+                      <PenTool className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-sm">
                         Rich Text Editor
                       </h4>
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-muted-foreground">
                         Edit AI content with full formatting capabilities
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Eye className="w-4 h-4 text-purple-600" />
+                      <Eye className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-sm">
                         Multiple Preview Modes
                       </h4>
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-muted-foreground">
                         Editor, HTML, Markdown, and Social Media views
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <Share2 className="w-4 h-4 text-orange-600" />
+                      <Share2 className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-sm">
                         Social Media Ready
                       </h4>
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-muted-foreground">
                         Format content for WhatsApp, Facebook, Twitter
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center">
-                      <ExternalLink className="w-4 h-4 text-pink-600" />
+                      <ExternalLink className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-sm">
                         Embedding Support
                       </h4>
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-muted-foreground">
                         Generate embed codes for your content
                       </p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
-                      <Hash className="w-4 h-4 text-indigo-600" />
+                      <Hash className="w-4 h-4 text-primary" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-sm">SEO Optimized</h4>
-                      <p className="text-xs text-gray-600">
+                      <p className="text-xs text-muted-foreground">
                         Built-in SEO best practices and keyword integration
                       </p>
                     </div>

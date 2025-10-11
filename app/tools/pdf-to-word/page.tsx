@@ -341,9 +341,9 @@ export default function PDFToWord() {
 
   const getFileIcon = (file: UploadedPDF) => {
     if (file.type === "image") {
-      return <Camera className="w-6 h-6 text-purple-600" />;
+      return <Camera className="w-6 h-6 text-primary" />;
     }
-    return <FileText className="w-6 h-6 text-red-600" />;
+    return <FileText className="w-6 h-6 text-destructive" />;
   };
 
   const getFileTypeLabel = (file: UploadedPDF) => {
@@ -354,21 +354,21 @@ export default function PDFToWord() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link
               href="/"
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <Scan className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">
+              <Scan className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">
                 OCR PDF to Word Converter
               </h1>
             </div>
@@ -383,7 +383,7 @@ export default function PDFToWord() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Upload className="w-5 h-5 text-blue-600" />
+                  <Upload className="w-5 h-5 text-primary" />
                   <span>Upload Files</span>
                 </CardTitle>
                 <CardDescription>
@@ -396,8 +396,8 @@ export default function PDFToWord() {
                 <div
                   className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${
                     dragActive
-                      ? "border-blue-500 bg-blue-50"
-                      : "border-gray-300 hover:border-blue-400"
+                      ? "border-blue-500 bg-background"
+                      : "border-border hover:border-blue-400"
                   }`}
                   onDragEnter={handleDrag}
                   onDragLeave={handleDrag}
@@ -406,15 +406,15 @@ export default function PDFToWord() {
                   onClick={() => fileInputRef.current?.click()}
                 >
                   <div className="flex justify-center space-x-4 mb-4">
-                    <FileText className="w-12 h-12 text-gray-400" />
-                    <Camera className="w-12 h-12 text-gray-400" />
+                    <FileText className="w-12 h-12 text-muted-foreground" />
+                    <Camera className="w-12 h-12 text-muted-foreground" />
                   </div>
                   <div className="space-y-2">
-                    <p className="text-lg font-medium text-gray-700">
+                    <p className="text-lg font-medium text-foreground">
                       Drag & drop PDF files or images here
                     </p>
-                    <p className="text-gray-500">or click to browse files</p>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-muted-foreground">or click to browse files</p>
+                    <p className="text-sm text-muted-foreground">
                       Supports: PDF, PNG, JPG, JPEG, GIF, BMP, TIFF • Max: 50MB
                       per file
                     </p>
@@ -458,7 +458,7 @@ export default function PDFToWord() {
                       <span>OCR Processing</span>
                       <Switch checked={useOCR} onCheckedChange={setUseOCR} />
                     </Label>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-muted-foreground">
                       {useOCR
                         ? "Automatically detect and extract text from scanned documents"
                         : "Extract only selectable text (faster but limited)"}
@@ -468,9 +468,9 @@ export default function PDFToWord() {
 
                 {/* Conversion Progress */}
                 {isConverting && (
-                  <div className="space-y-3 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="space-y-3 p-4 bg-background rounded-lg border border-blue-200">
                     <div className="flex items-center space-x-2">
-                      <Scan className="w-5 h-5 text-blue-600 animate-pulse" />
+                      <Scan className="w-5 h-5 text-primary animate-pulse" />
                       <span className="font-medium text-blue-900">
                         {conversionProgress.stage === "ocr"
                           ? "OCR Processing"
@@ -488,7 +488,7 @@ export default function PDFToWord() {
                       />
                       {conversionProgress.currentPage &&
                         conversionProgress.totalPages && (
-                          <p className="text-sm text-blue-600">
+                          <p className="text-sm text-primary">
                             Page {conversionProgress.currentPage} of{" "}
                             {conversionProgress.totalPages}
                           </p>
@@ -525,7 +525,7 @@ export default function PDFToWord() {
                       {uploadedFiles.map((file) => (
                         <div
                           key={file.id}
-                          className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg border"
+                          className="flex items-center space-x-4 p-4 bg-background rounded-lg border"
                         >
                           <div className="flex-shrink-0">
                             <div
@@ -539,10 +539,10 @@ export default function PDFToWord() {
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
+                            <p className="text-sm font-medium text-foreground truncate">
                               {file.name}.{file.file.name.split(".").pop()}
                             </p>
-                            <div className="flex items-center space-x-2 text-sm text-gray-500">
+                            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                               <span>
                                 {(file.size / 1024 / 1024).toFixed(2)} MB
                               </span>
@@ -558,13 +558,13 @@ export default function PDFToWord() {
                             {file.needsOCR && (
                               <div className="flex items-center space-x-1 mt-1">
                                 <Scan className="w-3 h-3 text-orange-500" />
-                                <span className="text-xs text-orange-600">
+                                <span className="text-xs text-primary">
                                   OCR Required
                                 </span>
                               </div>
                             )}
                             {currentlyConverting === file.id && (
-                              <p className="text-sm text-blue-600 mt-1">
+                              <p className="text-sm text-primary mt-1">
                                 Converting...
                               </p>
                             )}
@@ -612,7 +612,7 @@ export default function PDFToWord() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <File className="w-5 h-5 text-blue-600" />
+                  <File className="w-5 h-5 text-primary" />
                   <span>Converted Documents</span>
                 </CardTitle>
                 <CardDescription>
@@ -640,7 +640,7 @@ export default function PDFToWord() {
                       {convertedDocs.map((doc) => (
                         <div
                           key={doc.id}
-                          className="p-4 bg-gray-50 rounded-lg border"
+                          className="p-4 bg-background rounded-lg border"
                         >
                           <div className="space-y-3">
                             {editingDocId === doc.id ? (
@@ -666,13 +666,13 @@ export default function PDFToWord() {
                             ) : (
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <h4 className="font-medium text-gray-900">
+                                  <h4 className="font-medium text-foreground">
                                     {doc.name}.{doc.format}
                                   </h4>
-                                  <p className="text-sm text-gray-500">
+                                  <p className="text-sm text-muted-foreground">
                                     From: {doc.originalName}
                                   </p>
-                                  <p className="text-sm text-gray-500">
+                                  <p className="text-sm text-muted-foreground">
                                     {(doc.size / 1024).toFixed(1)} KB •{" "}
                                     {doc.format.toUpperCase()}
                                   </p>
@@ -682,11 +682,11 @@ export default function PDFToWord() {
                                     ) : (
                                       <CheckCircle className="w-3 h-3 text-green-500" />
                                     )}
-                                    <span className="text-xs text-gray-600">
+                                    <span className="text-xs text-muted-foreground">
                                       {doc.extractionMethod}
                                     </span>
                                   </div>
-                                  <p className="text-xs text-gray-400">
+                                  <p className="text-xs text-muted-foreground">
                                     {doc.createdAt.toLocaleString()}
                                   </p>
                                 </div>
@@ -734,8 +734,8 @@ export default function PDFToWord() {
                     </div>
                   </div>
                 ) : (
-                  <div className="py-8 text-center text-gray-500">
-                    <File className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <div className="py-8 text-center text-muted-foreground">
+                    <File className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                     <p>No documents converted yet</p>
                     <p className="text-sm">
                       Upload and convert files to see them here
@@ -749,42 +749,42 @@ export default function PDFToWord() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Scan className="w-5 h-5 text-blue-600" />
+                  <Scan className="w-5 h-5 text-primary" />
                   <span>OCR Features</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Advanced OCR technology</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Scanned PDF support</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Image to text conversion</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Multi-language recognition</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>High accuracy text extraction</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Local processing (privacy-safe)</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Batch processing support</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-background0 rounded-full"></div>
                     <span>Multiple output formats</span>
                   </div>
                 </div>

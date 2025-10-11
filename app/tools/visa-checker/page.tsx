@@ -123,30 +123,30 @@ export default function VisaChecker() {
   const getRequirementIcon = (requirement: string) => {
     switch (requirement) {
       case 'visa_free':
-        return <CheckCircle className="w-6 h-6 text-green-600" />;
+        return <CheckCircle className="w-6 h-6 text-primary" />;
       case 'visa_on_arrival':
-        return <Clock className="w-6 h-6 text-blue-600" />;
+        return <Clock className="w-6 h-6 text-primary" />;
       case 'eta_required':
-        return <FileText className="w-6 h-6 text-orange-600" />;
+        return <FileText className="w-6 h-6 text-primary" />;
       case 'visa_required':
-        return <XCircle className="w-6 h-6 text-red-600" />;
+        return <XCircle className="w-6 h-6 text-destructive" />;
       default:
-        return <AlertTriangle className="w-6 h-6 text-gray-600" />;
+        return <AlertTriangle className="w-6 h-6 text-muted-foreground" />;
     }
   };
 
   const getRequirementColor = (requirement: string) => {
     switch (requirement) {
       case 'visa_free':
-        return 'bg-green-50 border-green-200';
+        return 'bg-background border-green-200';
       case 'visa_on_arrival':
-        return 'bg-blue-50 border-blue-200';
+        return 'bg-background border-blue-200';
       case 'eta_required':
-        return 'bg-orange-50 border-orange-200';
+        return 'bg-background border-orange-200';
       case 'visa_required':
         return 'bg-red-50 border-red-200';
       default:
-        return 'bg-gray-50 border-gray-200';
+        return 'bg-background border-border';
     }
   };
 
@@ -176,18 +176,18 @@ export default function VisaChecker() {
   const toCountryData = countries.find(c => c.code === toCountry);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <Plane className="w-6 h-6 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Visa Requirements Checker</h1>
+              <Plane className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Visa Requirements Checker</h1>
             </div>
           </div>
         </div>
@@ -200,7 +200,7 @@ export default function VisaChecker() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Globe className="w-5 h-5 text-blue-600" />
+                  <Globe className="w-5 h-5 text-primary" />
                   <span>Check Visa Requirements</span>
                 </CardTitle>
                 <CardDescription>
@@ -281,7 +281,7 @@ export default function VisaChecker() {
                       <button
                         key={countryCode}
                         onClick={() => setToCountry(countryCode)}
-                        className="p-3 text-center border rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-colors"
+                        className="p-3 text-center border rounded-lg hover:bg-background hover:border-blue-300 transition-colors"
                       >
                         <div className="text-2xl mb-1">{country?.flag}</div>
                         <div className="text-xs font-medium">{country?.name}</div>
@@ -321,32 +321,32 @@ export default function VisaChecker() {
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Maximum Stay</h4>
-                        <p className="text-gray-700">{visaInfo.maxStay}</p>
+                        <h4 className="font-semibold text-foreground mb-1">Maximum Stay</h4>
+                        <p className="text-foreground">{visaInfo.maxStay}</p>
                       </div>
                       {visaInfo.processingTime && (
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-1">Processing Time</h4>
-                          <p className="text-gray-700">{visaInfo.processingTime}</p>
+                          <h4 className="font-semibold text-foreground mb-1">Processing Time</h4>
+                          <p className="text-foreground">{visaInfo.processingTime}</p>
                         </div>
                       )}
                       {visaInfo.cost && (
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-1">Cost</h4>
-                          <p className="text-gray-700">{visaInfo.cost}</p>
+                          <h4 className="font-semibold text-foreground mb-1">Cost</h4>
+                          <p className="text-foreground">{visaInfo.cost}</p>
                         </div>
                       )}
                       {visaInfo.validityPeriod && (
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-1">Validity Period</h4>
-                          <p className="text-gray-700">{visaInfo.validityPeriod}</p>
+                          <h4 className="font-semibold text-foreground mb-1">Validity Period</h4>
+                          <p className="text-foreground">{visaInfo.validityPeriod}</p>
                         </div>
                       )}
                     </div>
                     
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Important Notes</h4>
-                      <p className="text-gray-700">{visaInfo.notes}</p>
+                      <h4 className="font-semibold text-foreground mb-2">Important Notes</h4>
+                      <p className="text-foreground">{visaInfo.notes}</p>
                     </div>
 
                     <Alert>
@@ -365,19 +365,19 @@ export default function VisaChecker() {
                   </CardHeader>
                   <CardContent className="space-y-3 text-sm">
                     <div className="flex items-start space-x-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                      <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                       <span>Check passport validity - many countries require 6 months remaining validity</span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                      <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                       <span>Ensure you have blank pages in your passport for stamps</span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                      <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                       <span>Consider travel insurance for international trips</span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                      <div className="w-2 h-2 bg-background0 rounded-full mt-2"></div>
                       <span>Check if you need specific vaccinations for your destination</span>
                     </div>
                   </CardContent>
@@ -385,8 +385,8 @@ export default function VisaChecker() {
               </>
             ) : (
               <Card className="shadow-lg border-0">
-                <CardContent className="py-12 text-center text-gray-500">
-                  <Plane className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                <CardContent className="py-12 text-center text-muted-foreground">
+                  <Plane className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                   <p>Select your passport country and destination to check visa requirements</p>
                 </CardContent>
               </Card>
@@ -399,31 +399,31 @@ export default function VisaChecker() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-primary mt-0.5" />
                   <div>
                     <h4 className="font-semibold text-green-800">Visa Free</h4>
-                    <p className="text-sm text-gray-600">No visa required for short-term visits</p>
+                    <p className="text-sm text-muted-foreground">No visa required for short-term visits</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <Clock className="w-5 h-5 text-blue-600 mt-0.5" />
+                  <Clock className="w-5 h-5 text-primary mt-0.5" />
                   <div>
                     <h4 className="font-semibold text-blue-800">Visa on Arrival</h4>
-                    <p className="text-sm text-gray-600">Visa issued at the port of entry</p>
+                    <p className="text-sm text-muted-foreground">Visa issued at the port of entry</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <FileText className="w-5 h-5 text-orange-600 mt-0.5" />
+                  <FileText className="w-5 h-5 text-primary mt-0.5" />
                   <div>
                     <h4 className="font-semibold text-orange-800">ETA/ESTA Required</h4>
-                    <p className="text-sm text-gray-600">Electronic travel authorization needed</p>
+                    <p className="text-sm text-muted-foreground">Electronic travel authorization needed</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <XCircle className="w-5 h-5 text-red-600 mt-0.5" />
+                  <XCircle className="w-5 h-5 text-destructive mt-0.5" />
                   <div>
                     <h4 className="font-semibold text-red-800">Visa Required</h4>
-                    <p className="text-sm text-gray-600">Must obtain visa before travel</p>
+                    <p className="text-sm text-muted-foreground">Must obtain visa before travel</p>
                   </div>
                 </div>
               </CardContent>

@@ -252,18 +252,18 @@ export default function CompressImage() {
   const totalSavings = totalOriginalSize > 0 ? Math.round((1 - totalCompressedSize / totalOriginalSize) * 100) : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+    <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-cream-50 via-ocean-50 to-warm-beige-100 dark:from-background dark:via-background dark:to-background">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-gray-200">
+      <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors">
+            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
-              <ImageIcon className="w-6 h-6 text-purple-600" />
-              <h1 className="text-xl font-semibold text-gray-900">Image Compressor</h1>
+              <ImageIcon className="w-6 h-6 text-primary" />
+              <h1 className="text-xl font-semibold text-foreground">Image Compressor</h1>
             </div>
           </div>
         </div>
@@ -276,7 +276,7 @@ export default function CompressImage() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Upload className="w-5 h-5 text-purple-600" />
+                  <Upload className="w-5 h-5 text-primary" />
                   <span>Upload Images</span>
                 </CardTitle>
                 <CardDescription>
@@ -288,8 +288,8 @@ export default function CompressImage() {
                 <div
                   className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${
                     dragActive 
-                      ? 'border-purple-500 bg-purple-50' 
-                      : 'border-gray-300 hover:border-purple-400'
+                      ? 'border-purple-500 bg-background' 
+                      : 'border-border hover:border-purple-400'
                   }`}
                   onDragEnter={handleDrag}
                   onDragLeave={handleDrag}
@@ -297,12 +297,12 @@ export default function CompressImage() {
                   onDrop={handleDrop}
                   onClick={() => fileInputRef.current?.click()}
                 >
-                  <ImageIcon className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                  <ImageIcon className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                   <div className="space-y-2">
-                    <p className="text-lg font-medium text-gray-700">
+                    <p className="text-lg font-medium text-foreground">
                       Drag & drop images here
                     </p>
-                    <p className="text-gray-500">or click to browse files</p>
+                    <p className="text-muted-foreground">or click to browse files</p>
                   </div>
                   <input
                     ref={fileInputRef}
@@ -315,10 +315,10 @@ export default function CompressImage() {
                 </div>
 
                 {/* Compression Settings */}
-                <Card className="bg-gray-50 border-0">
+                <Card className="bg-background border-0">
                   <CardHeader className="pb-4">
                     <CardTitle className="flex items-center space-x-2 text-base">
-                      <Settings className="w-4 h-4 text-purple-600" />
+                      <Settings className="w-4 h-4 text-primary" />
                       <span>Compression Settings</span>
                     </CardTitle>
                   </CardHeader>
@@ -334,7 +334,7 @@ export default function CompressImage() {
                           step={5}
                           className="w-full"
                         />
-                        <p className="text-xs text-gray-500">Higher quality = larger file size</p>
+                        <p className="text-xs text-muted-foreground">Higher quality = larger file size</p>
                       </div>
                       <div className="space-y-2">
                         <Label>Output Format</Label>
@@ -427,7 +427,7 @@ export default function CompressImage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto">
                       {uploadedImages.map((image) => (
                         <div key={image.id} className={`flex items-center space-x-3 p-3 rounded-lg border-2 transition-colors ${
-                          image.selected ? 'border-purple-200 bg-purple-50' : 'border-gray-200 bg-gray-50'
+                          image.selected ? 'border-purple-200 bg-background' : 'border-border bg-background'
                         }`}>
                           <Checkbox
                             checked={image.selected}
@@ -441,10 +441,10 @@ export default function CompressImage() {
                             />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">
+                            <p className="text-sm font-medium text-foreground truncate">
                               {image.name}
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-muted-foreground">
                               {(image.size / 1024 / 1024).toFixed(2)} MB • {image.dimensions.width}×{image.dimensions.height}
                             </p>
                           </div>
@@ -461,7 +461,7 @@ export default function CompressImage() {
 
                     <Button 
                       onClick={compressImages}
-                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                      className="w-full bg-primary hover:bg-primary/90"
                       disabled={isCompressing || selectedCount === 0}
                       size="lg"
                     >
@@ -490,7 +490,7 @@ export default function CompressImage() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <ImageIcon className="w-5 h-5 text-purple-600" />
+                  <ImageIcon className="w-5 h-5 text-primary" />
                   <span>Compressed Images</span>
                 </CardTitle>
                 <CardDescription>
@@ -501,7 +501,7 @@ export default function CompressImage() {
                 </CardDescription>
                 {compressedImages.length > 0 && (
                   <div className="flex justify-between items-center pt-2">
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-muted-foreground">
                       Total savings: {totalSavings}%
                     </div>
                     <Button size="sm" onClick={downloadAll}>
@@ -515,7 +515,7 @@ export default function CompressImage() {
                 {compressedImages.length > 0 ? (
                   <div className="space-y-4 max-h-96 overflow-y-auto">
                     {compressedImages.map((image) => (
-                      <div key={image.id} className="p-4 bg-gray-50 rounded-lg border">
+                      <div key={image.id} className="p-4 bg-background rounded-lg border">
                         <div className="space-y-3">
                           <div className="flex items-center space-x-3">
                             <img
@@ -539,7 +539,7 @@ export default function CompressImage() {
                               ) : (
                                 <div>
                                   <div className="flex items-center justify-between">
-                                    <h4 className="font-medium text-gray-900 text-sm">{image.name}</h4>
+                                    <h4 className="font-medium text-foreground text-sm">{image.name}</h4>
                                     <Button
                                       variant="ghost"
                                       size="sm"
@@ -548,10 +548,10 @@ export default function CompressImage() {
                                       <Edit2 className="w-3 h-3" />
                                     </Button>
                                   </div>
-                                  <p className="text-xs text-gray-500">
+                                  <p className="text-xs text-muted-foreground">
                                     {(image.originalSize / 1024 / 1024).toFixed(2)} MB → {(image.compressedSize / 1024 / 1024).toFixed(2)} MB
                                   </p>
-                                  <p className="text-xs text-green-600 font-medium">
+                                  <p className="text-xs text-primary font-medium">
                                     {image.compressionRatio}% smaller
                                   </p>
                                 </div>
@@ -587,8 +587,8 @@ export default function CompressImage() {
                     ))}
                   </div>
                 ) : (
-                  <div className="py-8 text-center text-gray-500">
-                    <ImageIcon className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                  <div className="py-8 text-center text-muted-foreground">
+                    <ImageIcon className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
                     <p>No images compressed yet</p>
                     <p className="text-sm">Upload and compress images to see them here</p>
                   </div>
@@ -618,7 +618,7 @@ export default function CompressImage() {
                     </div>
                     <div className="flex justify-between border-t pt-2">
                       <span>Total savings:</span>
-                      <span className="font-bold text-green-600">{totalSavings}%</span>
+                      <span className="font-bold text-primary">{totalSavings}%</span>
                     </div>
                   </div>
                 </CardContent>
