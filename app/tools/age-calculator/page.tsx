@@ -423,7 +423,7 @@ export default function AgeCalculator() {
                         })}
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        You'll turn {result.years + 1} on a{" "}
+                        You&apos;ll turn {result.years + 1} on a{" "}
                         {result.nextBirthday.dayOfWeek}
                       </div>
                     </div>

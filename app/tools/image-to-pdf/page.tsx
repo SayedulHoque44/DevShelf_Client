@@ -1,17 +1,40 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import Link from 'next/link';
-import { ArrowLeft, FileImage, FileText, Upload, Download, X, Edit2, Eye, Trash2, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Progress } from '@/components/ui/progress';
-import { createPDFFromImages, PDFOptions } from '@/lib/pdf-utils';
+import { useState, useRef } from "react";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  FileImage,
+  FileText,
+  Upload,
+  Download,
+  X,
+  Edit2,
+  Eye,
+  Trash2,
+  Plus,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
+import { createPDFFromImages, PDFOptions } from "@/lib/pdf-utils";
 
 interface UploadedImage {
   id: string;
@@ -36,21 +59,25 @@ export default function ImageToPDF() {
   const [isConverting, setIsConverting] = useState(false);
   const [conversionProgress, setConversionProgress] = useState(0);
   const [dragActive, setDragActive] = useState(false);
-  const [pdfName, setPdfName] = useState('converted-images');
-  const [pageSize, setPageSize] = useState<'A4' | 'A3' | 'Letter' | 'Legal'>('A4');
-  const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
+  const [pdfName, setPdfName] = useState("converted-images");
+  const [pageSize, setPageSize] = useState<"A4" | "A3" | "Letter" | "Legal">(
+    "A4"
+  );
+  const [orientation, setOrientation] = useState<"portrait" | "landscape">(
+    "portrait"
+  );
   const [editingImageId, setEditingImageId] = useState<string | null>(null);
   const [editingPdfId, setEditingPdfId] = useState<string | null>(null);
-  const [newImageName, setNewImageName] = useState('');
-  const [newPdfName, setNewPdfName] = useState('');
+  const [newImageName, setNewImageName] = useState("");
+  const [newPdfName, setNewPdfName] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.type === 'dragenter' || e.type === 'dragover') {
+    if (e.type === "dragenter" || e.type === "dragover") {
       setDragActive(true);
-    } else if (e.type === 'dragleave') {
+    } else if (e.type === "dragleave") {
       setDragActive(false);
     }
   };
@@ -72,9 +99,9 @@ export default function ImageToPDF() {
   };
 
   const handleFiles = (files: File[]) => {
-    const imageFiles = files.filter(file => file.type.startsWith('image/'));
-    
-    imageFiles.forEach(file => {
+    const imageFiles = files.filter((file) => file.type.startsWith("image/"));
+
+    imageFiles.forEach((file) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const newImage: UploadedImage = {
@@ -82,32 +109,36 @@ export default function ImageToPDF() {
           file,
           preview: e.target?.result as string,
           selected: true,
-          name: file.name.split('.')[0]
+          name: file.name.split(".")[0],
         };
-        setUploadedImages(prev => [...prev, newImage]);
+        setUploadedImages((prev) => [...prev, newImage]);
       };
       reader.readAsDataURL(file);
     });
   };
 
   const toggleImageSelection = (id: string) => {
-    setUploadedImages(prev => 
-      prev.map(img => 
+    setUploadedImages((prev) =>
+      prev.map((img) =>
         img.id === id ? { ...img, selected: !img.selected } : img
       )
     );
   };
 
   const selectAllImages = () => {
-    setUploadedImages(prev => prev.map(img => ({ ...img, selected: true })));
+    setUploadedImages((prev) =>
+      prev.map((img) => ({ ...img, selected: true }))
+    );
   };
 
   const deselectAllImages = () => {
-    setUploadedImages(prev => prev.map(img => ({ ...img, selected: false })));
+    setUploadedImages((prev) =>
+      prev.map((img) => ({ ...img, selected: false }))
+    );
   };
 
   const removeImage = (id: string) => {
-    setUploadedImages(prev => prev.filter(img => img.id !== id));
+    setUploadedImages((prev) => prev.filter((img) => img.id !== id));
   };
 
   const startEditingImage = (id: string, currentName: string) => {
@@ -116,13 +147,11 @@ export default function ImageToPDF() {
   };
 
   const saveImageName = (id: string) => {
-    setUploadedImages(prev => 
-      prev.map(img => 
-        img.id === id ? { ...img, name: newImageName } : img
-      )
+    setUploadedImages((prev) =>
+      prev.map((img) => (img.id === id ? { ...img, name: newImageName } : img))
     );
     setEditingImageId(null);
-    setNewImageName('');
+    setNewImageName("");
   };
 
   const startEditingPdf = (id: string, currentName: string) => {
@@ -131,30 +160,28 @@ export default function ImageToPDF() {
   };
 
   const savePdfName = (id: string) => {
-    setGeneratedPDFs(prev => 
-      prev.map(pdf => 
-        pdf.id === id ? { ...pdf, name: newPdfName } : pdf
-      )
+    setGeneratedPDFs((prev) =>
+      prev.map((pdf) => (pdf.id === id ? { ...pdf, name: newPdfName } : pdf))
     );
     setEditingPdfId(null);
-    setNewPdfName('');
+    setNewPdfName("");
   };
 
   const deletePdf = (id: string) => {
-    setGeneratedPDFs(prev => prev.filter(pdf => pdf.id !== id));
+    setGeneratedPDFs((prev) => prev.filter((pdf) => pdf.id !== id));
   };
 
   const convertToPDF = async () => {
-    const selectedImages = uploadedImages.filter(img => img.selected);
+    const selectedImages = uploadedImages.filter((img) => img.selected);
     if (selectedImages.length === 0) return;
-    
+
     setIsConverting(true);
     setConversionProgress(0);
 
     try {
       // Simulate progress updates
       const progressInterval = setInterval(() => {
-        setConversionProgress(prev => {
+        setConversionProgress((prev) => {
           if (prev >= 90) {
             clearInterval(progressInterval);
             return 90;
@@ -167,12 +194,12 @@ export default function ImageToPDF() {
       const options: PDFOptions = {
         pageSize,
         orientation,
-        margin: 50
+        margin: 50,
       };
 
       // Convert images to PDF
       const pdfBlob = await createPDFFromImages(
-        selectedImages.map(img => ({ file: img.file, name: img.name })),
+        selectedImages.map((img) => ({ file: img.file, name: img.name })),
         options
       );
 
@@ -181,23 +208,22 @@ export default function ImageToPDF() {
 
       const newPdf: GeneratedPDF = {
         id: Date.now().toString(),
-        name: pdfName || 'converted-images',
+        name: pdfName || "converted-images",
         size: pdfBlob.size,
         createdAt: new Date(),
         imageCount: selectedImages.length,
-        blob: pdfBlob
+        blob: pdfBlob,
       };
-      
-      setGeneratedPDFs(prev => [...prev, newPdf]);
-      
+
+      setGeneratedPDFs((prev) => [...prev, newPdf]);
+
       // Reset progress after a short delay
       setTimeout(() => {
         setConversionProgress(0);
       }, 1000);
-      
     } catch (error) {
-      console.error('Error converting images to PDF:', error);
-      alert('Error converting images to PDF. Please try again.');
+      console.error("Error converting images to PDF:", error);
+      alert("Error converting images to PDF. Please try again.");
     } finally {
       setIsConverting(false);
     }
@@ -205,7 +231,7 @@ export default function ImageToPDF() {
 
   const downloadPdf = (pdf: GeneratedPDF) => {
     const url = URL.createObjectURL(pdf.blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = `${pdf.name}.pdf`;
     document.body.appendChild(a);
@@ -216,7 +242,7 @@ export default function ImageToPDF() {
 
   const previewPdf = (pdf: GeneratedPDF) => {
     const url = URL.createObjectURL(pdf.blob);
-    window.open(url, '_blank');
+    window.open(url, "_blank");
     // Clean up the URL after a delay to allow the browser to load it
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
@@ -225,7 +251,7 @@ export default function ImageToPDF() {
     setUploadedImages([]);
   };
 
-  const selectedCount = uploadedImages.filter(img => img.selected).length;
+  const selectedCount = uploadedImages.filter((img) => img.selected).length;
 
   return (
     <div className="min-h-screen transition-colors duration-300 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50">
@@ -233,13 +259,18 @@ export default function ImageToPDF() {
       <header className="bg-card/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              href="/"
+              className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
               <ArrowLeft className="w-5 h-5" />
               <span>Back to Tools</span>
             </Link>
             <div className="flex items-center space-x-2">
               <FileImage className="w-6 h-6 text-primary" />
-              <h1 className="text-xl font-semibold text-foreground">Image to PDF Converter</h1>
+              <h1 className="text-xl font-semibold text-foreground">
+                Image to PDF Converter
+              </h1>
             </div>
           </div>
         </div>
@@ -256,16 +287,17 @@ export default function ImageToPDF() {
                   <span>Upload Images</span>
                 </CardTitle>
                 <CardDescription>
-                  Upload multiple images and convert them into a professional PDF document
+                  Upload multiple images and convert them into a professional
+                  PDF document
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 {/* Drag & Drop Area */}
                 <div
                   className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${
-                    dragActive 
-                      ? 'border-orange-500 bg-background' 
-                      : 'border-border hover:border-orange-400'
+                    dragActive
+                      ? "border-orange-500 bg-background"
+                      : "border-border hover:border-orange-400"
                   }`}
                   onDragEnter={handleDrag}
                   onDragLeave={handleDrag}
@@ -278,7 +310,9 @@ export default function ImageToPDF() {
                     <p className="text-lg font-medium text-foreground">
                       Drag & drop images here
                     </p>
-                    <p className="text-muted-foreground">or click to browse files</p>
+                    <p className="text-muted-foreground">
+                      or click to browse files
+                    </p>
                   </div>
                   <input
                     ref={fileInputRef}
@@ -303,7 +337,12 @@ export default function ImageToPDF() {
                   </div>
                   <div className="space-y-2">
                     <Label>Page Size</Label>
-                    <Select value={pageSize} onValueChange={(value: 'A4' | 'A3' | 'Letter' | 'Legal') => setPageSize(value)}>
+                    <Select
+                      value={pageSize}
+                      onValueChange={(value) =>
+                        setPageSize(value as "A4" | "A3" | "Letter" | "Legal")
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -317,7 +356,12 @@ export default function ImageToPDF() {
                   </div>
                   <div className="space-y-2">
                     <Label>Orientation</Label>
-                    <Select value={orientation} onValueChange={(value: 'portrait' | 'landscape') => setOrientation(value)}>
+                    <Select
+                      value={orientation}
+                      onValueChange={(value) =>
+                        setOrientation(value as "portrait" | "landscape")
+                      }
+                    >
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -349,10 +393,18 @@ export default function ImageToPDF() {
                           {selectedCount} of {uploadedImages.length} selected
                         </span>
                         <div className="flex space-x-2">
-                          <Button variant="outline" size="sm" onClick={selectAllImages}>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={selectAllImages}
+                          >
                             Select All
                           </Button>
-                          <Button variant="outline" size="sm" onClick={deselectAllImages}>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={deselectAllImages}
+                          >
                             Deselect All
                           </Button>
                         </div>
@@ -365,12 +417,19 @@ export default function ImageToPDF() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto">
                       {uploadedImages.map((image, index) => (
-                        <div key={image.id} className={`flex items-center space-x-3 p-3 rounded-lg border-2 transition-colors ${
-                          image.selected ? 'border-orange-200 bg-background' : 'border-border bg-background'
-                        }`}>
+                        <div
+                          key={image.id}
+                          className={`flex items-center space-x-3 p-3 rounded-lg border-2 transition-colors ${
+                            image.selected
+                              ? "border-orange-200 bg-background"
+                              : "border-border bg-background"
+                          }`}
+                        >
                           <Checkbox
                             checked={image.selected}
-                            onCheckedChange={() => toggleImageSelection(image.id)}
+                            onCheckedChange={() =>
+                              toggleImageSelection(image.id)
+                            }
                           />
                           <div className="flex-shrink-0">
                             <img
@@ -384,11 +443,18 @@ export default function ImageToPDF() {
                               <div className="flex space-x-2">
                                 <Input
                                   value={newImageName}
-                                  onChange={(e) => setNewImageName(e.target.value)}
+                                  onChange={(e) =>
+                                    setNewImageName(e.target.value)
+                                  }
                                   className="text-sm"
-                                  onKeyPress={(e) => e.key === 'Enter' && saveImageName(image.id)}
+                                  onKeyPress={(e) =>
+                                    e.key === "Enter" && saveImageName(image.id)
+                                  }
                                 />
-                                <Button size="sm" onClick={() => saveImageName(image.id)}>
+                                <Button
+                                  size="sm"
+                                  onClick={() => saveImageName(image.id)}
+                                >
                                   Save
                                 </Button>
                               </div>
@@ -398,7 +464,8 @@ export default function ImageToPDF() {
                                   {image.name}
                                 </p>
                                 <p className="text-xs text-muted-foreground">
-                                  {(image.file.size / 1024 / 1024).toFixed(2)} MB
+                                  {(image.file.size / 1024 / 1024).toFixed(2)}{" "}
+                                  MB
                                 </p>
                               </div>
                             )}
@@ -407,7 +474,9 @@ export default function ImageToPDF() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => startEditingImage(image.id, image.name)}
+                              onClick={() =>
+                                startEditingImage(image.id, image.name)
+                              }
                             >
                               <Edit2 className="w-3 h-3" />
                             </Button>
@@ -426,7 +495,7 @@ export default function ImageToPDF() {
                 )}
 
                 {/* Convert Button */}
-                <Button 
+                <Button
                   onClick={convertToPDF}
                   className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700"
                   disabled={isConverting || selectedCount === 0}
@@ -437,13 +506,18 @@ export default function ImageToPDF() {
                   ) : (
                     <FileText className="w-4 h-4 mr-2" />
                   )}
-                  {isConverting ? 'Converting...' : `Convert ${selectedCount} Image${selectedCount !== 1 ? 's' : ''} to PDF`}
+                  {isConverting
+                    ? "Converting..."
+                    : `Convert ${selectedCount} Image${
+                        selectedCount !== 1 ? "s" : ""
+                      } to PDF`}
                 </Button>
 
                 <Alert>
                   <FileImage className="h-4 w-4" />
                   <AlertDescription>
-                    Supported formats: JPG, PNG, GIF, BMP, WEBP. Maximum file size: 10MB per image.
+                    Supported formats: JPG, PNG, GIF, BMP, WEBP. Maximum file
+                    size: 10MB per image.
                   </AlertDescription>
                 </Alert>
               </CardContent>
@@ -459,17 +533,21 @@ export default function ImageToPDF() {
                   <span>Generated PDFs</span>
                 </CardTitle>
                 <CardDescription>
-                  {generatedPDFs.length > 0 
-                    ? `${generatedPDFs.length} PDF${generatedPDFs.length > 1 ? 's' : ''} generated`
-                    : 'Your converted PDFs will appear here'
-                  }
+                  {generatedPDFs.length > 0
+                    ? `${generatedPDFs.length} PDF${
+                        generatedPDFs.length > 1 ? "s" : ""
+                      } generated`
+                    : "Your converted PDFs will appear here"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 {generatedPDFs.length > 0 ? (
                   <div className="space-y-4 max-h-96 overflow-y-auto">
                     {generatedPDFs.map((pdf) => (
-                      <div key={pdf.id} className="p-4 bg-background rounded-lg border">
+                      <div
+                        key={pdf.id}
+                        className="p-4 bg-background rounded-lg border"
+                      >
                         <div className="space-y-3">
                           {editingPdfId === pdf.id ? (
                             <div className="flex space-x-2">
@@ -477,18 +555,26 @@ export default function ImageToPDF() {
                                 value={newPdfName}
                                 onChange={(e) => setNewPdfName(e.target.value)}
                                 className="text-sm"
-                                onKeyPress={(e) => e.key === 'Enter' && savePdfName(pdf.id)}
+                                onKeyPress={(e) =>
+                                  e.key === "Enter" && savePdfName(pdf.id)
+                                }
                               />
-                              <Button size="sm" onClick={() => savePdfName(pdf.id)}>
+                              <Button
+                                size="sm"
+                                onClick={() => savePdfName(pdf.id)}
+                              >
                                 Save
                               </Button>
                             </div>
                           ) : (
                             <div className="flex items-center justify-between">
                               <div>
-                                <h4 className="font-medium text-foreground">{pdf.name}.pdf</h4>
+                                <h4 className="font-medium text-foreground">
+                                  {pdf.name}.pdf
+                                </h4>
                                 <p className="text-sm text-muted-foreground">
-                                  {pdf.imageCount} images • {(pdf.size / 1024 / 1024).toFixed(2)} MB
+                                  {pdf.imageCount} images •{" "}
+                                  {(pdf.size / 1024 / 1024).toFixed(2)} MB
                                 </p>
                                 <p className="text-xs text-muted-foreground">
                                   {pdf.createdAt.toLocaleString()}
@@ -497,7 +583,9 @@ export default function ImageToPDF() {
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() => startEditingPdf(pdf.id, pdf.name)}
+                                onClick={() =>
+                                  startEditingPdf(pdf.id, pdf.name)
+                                }
                               >
                                 <Edit2 className="w-3 h-3" />
                               </Button>

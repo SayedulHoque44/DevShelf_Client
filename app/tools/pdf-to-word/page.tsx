@@ -37,8 +37,9 @@ import {
 } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Switch } from "@/components/ui/switch";
-import { DocumentConverter } from "@/lib/document-converter";
-import { OCRProcessor } from "@/lib/ocr-processor";
+
+// Disable SSR for this page to avoid DOMMatrix errors
+export const dynamic = "force-dynamic";
 
 interface UploadedPDF {
   id: string;
@@ -95,6 +96,12 @@ export default function PDFToWord() {
   );
   const [useOCR, setUseOCR] = useState(true);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Only load browser-only modules on client side
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Cleanup OCR resources on unmount
   useEffect(() => {
@@ -145,8 +152,9 @@ export default function PDFToWord() {
       let needsOCR = false;
 
       // Check if PDF needs OCR
-      if (fileType === "pdf") {
+      if (fileType === "pdf" && isMounted) {
         try {
+          const { OCRProcessor } = await import("@/lib/ocr-processor");
           needsOCR = await OCRProcessor.needsOCR(file);
         } catch (error) {
           console.error("Error checking OCR requirement:", error);
@@ -201,6 +209,10 @@ export default function PDFToWord() {
           message: progress.message || "Processing...",
         });
       };
+
+      // Dynamically import browser-only modules
+      const { DocumentConverter } = await import("@/lib/document-converter");
+      const { OCRProcessor } = await import("@/lib/ocr-processor");
 
       // Extract text based on file type
       if (fileData.type === "pdf") {
@@ -283,8 +295,9 @@ export default function PDFToWord() {
     }
   };
 
-  const downloadDocument = (doc: ConvertedDocument) => {
+  const downloadDocument = async (doc: ConvertedDocument) => {
     const filename = `${doc.name}.${doc.format}`;
+    const { DocumentConverter } = await import("@/lib/document-converter");
     DocumentConverter.downloadDocument(doc.blob, filename);
   };
 
@@ -413,7 +426,9 @@ export default function PDFToWord() {
                     <p className="text-lg font-medium text-foreground">
                       Drag & drop PDF files or images here
                     </p>
-                    <p className="text-muted-foreground">or click to browse files</p>
+                    <p className="text-muted-foreground">
+                      or click to browse files
+                    </p>
                     <p className="text-sm text-muted-foreground">
                       Supports: PDF, PNG, JPG, JPEG, GIF, BMP, TIFF • Max: 50MB
                       per file

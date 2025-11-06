@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Gemini Imagen API Image Generation Service
+// Gemini API Image Generation Service using the @google/genai package
 async function generateAIImageWithGemini(
   prompt: string,
   style: string,
@@ -8,13 +9,15 @@ async function generateAIImageWithGemini(
   aspectRatio: string
 ) {
   try {
-    // Get the API Key from environment variables
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      throw new Error("GEMINI_API_KEY not found in environment variables");
-    }
+    // 1. Initialize Google Generative AI with the API Key
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
-    // Create a descriptive prompt for the image model
+    // 2. Get the appropriate model for image generation via this SDK
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash-image-preview", // This model works well with the SDK for image generation
+    });
+
+    // 3. Create a descriptive prompt (same logic as before)
     const stylePrompts = {
       realistic: "photorealistic, high detail, professional photography",
       artistic: "artistic, creative, stylized, unique composition",
@@ -23,13 +26,11 @@ async function generateAIImageWithGemini(
       portrait: "portrait photography, professional headshot, detailed face",
       landscape: "landscape photography, scenic view, natural beauty",
     };
-
     const qualityPrompts = {
       high: "ultra high quality, 4K resolution, professional grade",
       medium: "high quality, detailed, clear",
       low: "good quality, clear",
     };
-
     const aspectRatioPrompts = {
       "1:1": "square format, 1:1 aspect ratio",
       "16:9": "widescreen format, 16:9 aspect ratio",
@@ -37,7 +38,6 @@ async function generateAIImageWithGemini(
       "9:16": "portrait format, 9:16 aspect ratio",
     };
 
-    // Combine user input into a single, effective prompt
     const descriptivePrompt = [
       prompt,
       stylePrompts[style as keyof typeof stylePrompts] || `style: ${style}`,
@@ -49,59 +49,36 @@ async function generateAIImageWithGemini(
       .filter(Boolean)
       .join(", ");
 
-    console.log("Descriptive prompt for Imagen:", descriptivePrompt);
+    console.log("Descriptive prompt for Gemini:", descriptivePrompt);
 
-    // Construct the API request for the Imagen model
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
-    const payload = {
-      instances: [{ prompt: descriptivePrompt }],
-      parameters: {
-        sampleCount: 1, // Generate one image
-      },
-    };
+    // 4. Make the API call using the SDK's generateContent method
+    const result = await model.generateContent(descriptivePrompt);
 
-    // Make the API call to Gemini Imagen
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    const response = result.response;
 
-    if (!response.ok) {
-      const errorBody = await response.json();
-      console.error(
-        "Gemini Imagen API Error:",
-        JSON.stringify(errorBody, null, 2)
-      );
-      throw new Error(
-        `Failed to generate image. Status: ${response.status}. ${
-          errorBody.error?.message || "Unknown error from Gemini API"
-        }`
-      );
-    }
-
-    const result = await response.json();
-    console.log(result, "result");
-    // Extract the base64 image data
-    const base64ImageData = result.predictions?.[0]?.bytesBase64Encoded;
+    // 5. Extract the base64 image data from the SDK's response structure
+    const base64ImageData = response?.candidates?.[0]?.content?.parts?.find(
+      (p) => p.inlineData
+    )?.inlineData?.data;
 
     if (!base64ImageData) {
-      console.error("Could not find image data in API response:", result);
+      console.error(
+        "Could not find image data in API response:",
+        JSON.stringify(response, null, 2)
+      );
       throw new Error("Could not extract image data from API response");
     }
 
     const imageUrl = `data:image/png;base64,${base64ImageData}`;
-    console.log(imageUrl, "imageUrl");
-    console.log("Successfully generated image with Gemini Imagen");
+    console.log("Successfully generated image with @google/genai package");
     return imageUrl;
   } catch (error) {
-    console.error("Error generating image with Gemini Imagen:", error);
+    console.error("Error generating image with @google/genai:", error);
     throw error;
   }
 }
 
+// This POST handler and all its logic remains the same
 export async function POST(request: NextRequest) {
   try {
     const { prompt, style, quality, aspectRatio, numImages } =
@@ -124,7 +101,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
     if (prompt.length < 3) {
       return NextResponse.json(
         {
@@ -134,7 +110,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-
     if (prompt.length > 1000) {
       return NextResponse.json(
         {
@@ -157,7 +132,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate images using Gemini Imagen
+    // Generate images
     const numImagesToGenerate = Math.min(numImages || 1, 4);
     const generatedImages = [];
 
@@ -182,7 +157,6 @@ export async function POST(request: NextRequest) {
       } catch (imageError: any) {
         console.error(`Error generating image ${i + 1}:`, imageError);
 
-        // If Gemini fails, fall back to a placeholder
         generatedImages.push({
           id: `img_${Date.now()}_${i}`,
           url: `https://via.placeholder.com/512x512/cccccc/666666?text=Image+Generation+Failed`,
@@ -196,22 +170,20 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Return the first image for compatibility with the frontend
     const firstImage = generatedImages[0];
 
     return NextResponse.json({
       success: true,
       imageUrl: firstImage.url,
-      images: generatedImages, // Keep the full array for future use
-      message: `Successfully generated ${numImagesToGenerate} image(s) using Gemini Imagen`,
+      images: generatedImages,
+      message: `Successfully generated ${numImagesToGenerate} image(s)`,
       metadata: {
         prompt,
         style,
         quality,
         aspectRatio,
         generatedAt: new Date().toISOString(),
-        aiProvider: "Google Gemini Imagen",
-        processingTime: "Variable (depends on AI processing)",
+        aiProvider: "Google Gemini (@google/genai)",
       },
     });
   } catch (error: any) {

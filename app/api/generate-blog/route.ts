@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const MISTRAL_API_KEY = "q4csgvETv85HHVEV8bQ88vbFFQjxgk3t";
+const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY || "";
 const MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions";
 
 function generateFallbackContent(prompt: string, settings: any): string {

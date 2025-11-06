@@ -117,6 +117,7 @@ export class OCRProcessor {
           await page.render({
             canvasContext: context,
             viewport: viewport,
+            canvas: canvas,
           }).promise;
 
           // Convert canvas to image data for OCR

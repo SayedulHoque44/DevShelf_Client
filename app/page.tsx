@@ -53,11 +53,6 @@ const toolCategories = [
         description: "Reduce image file sizes",
       },
       {
-        name: "Resume Builder",
-        path: "/tools/resume-builder",
-        description: "Create professional resumes",
-      },
-      {
         name: "Cover Letter Generator",
         path: "/tools/cover-letter",
         description: "Generate compelling cover letters",
@@ -71,6 +66,12 @@ const toolCategories = [
     icon: GraduationCap,
     color: "bg-warm-beige-500",
     tools: [
+      {
+        name: "Resume Builder",
+        path: "/tools/resume-builder",
+        description:
+          "Create professional resumes with Classic or Modern design",
+      },
       {
         name: "Driving License Practice",
         path: "/tools/driving-license",
@@ -106,6 +107,11 @@ const toolCategories = [
         description: "Summarize YouTube videos with AI",
       },
       {
+        name: "AI Image Processor",
+        path: "/tools/ai-image-processor",
+        description: "Edit images and extract information with AI",
+      },
+      {
         name: "AI Summarizer",
         path: "/tools/ai-summarizer",
         description: "Summarize long texts instantly",
@@ -134,6 +140,11 @@ const toolCategories = [
         name: "Email Responder",
         path: "/tools/email-responder",
         description: "Generate professional email responses",
+      },
+      {
+        name: "API Test Page",
+        path: "/tools/test",
+        description: "Test Google GenAI API functionality",
       },
     ],
   },
@@ -411,7 +422,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-foreground mb-2">25+</div>
+              <div className="text-3xl font-bold text-foreground mb-2">26+</div>
               <div className="text-muted-foreground">Free Tools</div>
             </div>
             <div>

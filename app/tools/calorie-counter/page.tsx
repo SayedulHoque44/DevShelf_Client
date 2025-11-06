@@ -355,7 +355,7 @@ export default function CalorieCounter() {
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <Calendar className="w-5 h-5 text-primary" />
-                  <span>Today's Summary</span>
+                  <span>Today&apos;s Summary</span>
                 </CardTitle>
                 <CardDescription>
                   {new Date().toLocaleDateString("en-US", {
@@ -653,8 +653,11 @@ export default function CalorieCounter() {
                       <Label>Gender</Label>
                       <Select
                         value={userProfile.gender}
-                        onValueChange={(value: "male" | "female") =>
-                          setUserProfile((prev) => ({ ...prev, gender: value }))
+                        onValueChange={(value) =>
+                          setUserProfile((prev) => ({
+                            ...prev,
+                            gender: value as "male" | "female",
+                          }))
                         }
                       >
                         <SelectTrigger>
@@ -760,7 +763,9 @@ export default function CalorieCounter() {
                   <div className="text-2xl font-bold text-primary">
                     {calorieGoal}
                   </div>
-                  <div className="text-sm text-muted-foreground">Calorie Goal</div>
+                  <div className="text-sm text-muted-foreground">
+                    Calorie Goal
+                  </div>
                 </div>
 
                 <div className="space-y-3 text-sm">
