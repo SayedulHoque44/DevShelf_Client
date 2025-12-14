@@ -146,6 +146,11 @@ const toolCategories = [
         path: "/tools/test",
         description: "Test Google GenAI API functionality",
       },
+      {
+        name: "AI Chatbot",
+        path: "/tools/chatbot",
+        description: "Chat with AI and analyze PDF documents",
+      },
     ],
   },
   {
